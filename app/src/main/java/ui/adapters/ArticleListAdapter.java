@@ -1,11 +1,16 @@
 package ui.adapters;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.rohitksingh.nytimesarticles.R;
+import com.rohitksingh.nytimesarticles.databinding.ItemListArticleBinding;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import models.Article;
 
@@ -20,11 +25,15 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     @NonNull
     @Override
     public ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+
+        ItemListArticleBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                R.layout.item_list_article, parent, false);
+        return new ArticleViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ArticleViewHolder holder, int position) {
+        holder.bind(position);
     }
 
     @Override
@@ -34,8 +43,16 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
 
     class ArticleViewHolder extends RecyclerView.ViewHolder{
 
-        public ArticleViewHolder(@NonNull View itemView) {
-            super(itemView);
+        private ItemListArticleBinding binding;
+
+        public ArticleViewHolder(@NonNull ItemListArticleBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        private void bind(int position){
+            Article article = articleList.get(position);
+            binding.setArticle(article);
         }
     }
 
