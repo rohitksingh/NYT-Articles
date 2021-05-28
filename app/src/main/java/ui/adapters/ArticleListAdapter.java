@@ -1,5 +1,6 @@
 package ui.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import com.rohitksingh.nytimesarticles.R;
 import com.rohitksingh.nytimesarticles.databinding.ItemListArticleBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -17,9 +19,11 @@ import models.Article;
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ArticleViewHolder> {
 
     public List<Article> articleList;
+    private Context context;
 
-    public ArticleListAdapter(List<Article> articleList){
-        this.articleList = articleList;
+    public ArticleListAdapter(Context context){
+        this.context = context;
+        articleList = new ArrayList<>();
     }
 
     @NonNull
@@ -39,6 +43,17 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     @Override
     public int getItemCount() {
         return articleList.size();
+    }
+
+
+    public void updateArticle(List<Article> articleList){
+        this.articleList = articleList;
+        notifyDataSetChanged();
+    }
+
+    public void updateItem(int position, Article offer){
+        articleList.set(position, offer);
+        notifyItemChanged(position, offer);
     }
 
     class ArticleViewHolder extends RecyclerView.ViewHolder{
