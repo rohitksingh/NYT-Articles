@@ -6,26 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ArticleListActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:animateLayoutChanges="true"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="8dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/sky_blue" />
+            android:background="@color/app_light_blue" />
         <TextView
             android:id="@+id/searchTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            tools:text="@string/search_article"
             android:textSize="16sp"
-            android:layout_marginStart="8dp"
+            tools:text="@string/search_article"
             android:text="@string/search_article"
+            android:layout_marginStart="8dp"
             />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
