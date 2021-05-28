@@ -18,6 +18,7 @@ public class ArticleListActivity extends AppCompatActivity{
 
     private ActivityArticleListBinding binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
