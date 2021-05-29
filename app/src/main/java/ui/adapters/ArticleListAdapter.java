@@ -2,7 +2,6 @@ package ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.rohitksingh.nytimesarticles.R;
@@ -29,6 +28,9 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         itemClickListener = (ItemClickListener)context;
     }
 
+    /***********************************************************************************************
+     *                              Adapter methods
+     **********************************************************************************************/
     @NonNull
     @Override
     public ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,6 +51,9 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     }
 
 
+    /***********************************************************************************************
+     *                              Public methods
+     **********************************************************************************************/
     public void updateArticle(List<Article> articleList){
         this.articleList = articleList;
         notifyDataSetChanged();
@@ -59,6 +64,9 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         notifyItemChanged(position, offer);
     }
 
+    /***********************************************************************************************
+     *                              ViewHolder
+     **********************************************************************************************/
     class ArticleViewHolder extends RecyclerView.ViewHolder{
 
         private ItemListArticleBinding binding;

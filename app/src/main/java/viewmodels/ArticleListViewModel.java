@@ -14,24 +14,23 @@ import repositories.ArticleRepository;
 
 public class ArticleListViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<Article>> articleMutableLiveData;
+    private MutableLiveData<List<Article>> articleListLiveData;
     private ArticleRepository repository;
 
     public ArticleListViewModel(@NonNull Application application) {
         super(application);
-        articleMutableLiveData = new MutableLiveData<>(new ArrayList<Article>());
+        articleListLiveData = new MutableLiveData<>(new ArrayList<Article>());
         repository = ArticleRepository.getInstance();
         loadArticlesFromAPI();
     }
 
-
     public LiveData<List<Article>> getArticlesLiveData(){
-        return articleMutableLiveData;
+        return articleListLiveData;
     }
 
     private void loadArticlesFromAPI(){
         List<Article> articles = repository.getAllArticles();
-        articleMutableLiveData.setValue(articles);
+        articleListLiveData.setValue(articles);
     }
 
 
