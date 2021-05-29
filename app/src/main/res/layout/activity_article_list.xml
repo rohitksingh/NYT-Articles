@@ -17,13 +17,14 @@
             android:animateLayoutChanges="true">
             <TextView
                 android:id="@+id/companyName"
-                android:text="Search"
+                android:text="NY Times"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="48dp"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_marginTop="240dp"
+                android:fontFamily="@font/cheltenham_italic"
                 />
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -44,7 +45,8 @@
                     android:layout_marginStart="8dp"
                     android:text="@string/search_article"
                     android:textSize="16sp"
-                    tools:text="@string/search_article" />
+                    tools:text="@string/search_article"
+                    />
             </LinearLayout>
         </LinearLayout>
 
