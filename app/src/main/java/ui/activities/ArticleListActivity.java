@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.rohitksingh.nytimesarticles.R;
 import com.rohitksingh.nytimesarticles.databinding.ActivityArticleListBinding;
@@ -17,13 +16,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import listeners.ItemClickListener;
 import ui.adapters.ArticleListAdapter;
+import ui.adapters.SearchSuggestionAdapter;
 import viewmodels.ArticleListViewModel;
 
 public class ArticleListActivity extends AppCompatActivity implements ItemClickListener,
         SearchView.OnQueryTextListener, SearchView.OnCloseListener, View.OnClickListener {
 
-    private ArticleListAdapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private ArticleListAdapter articleListAdapter;
+    private RecyclerView.LayoutManager articleListLayoutManager;
+    private RecyclerView.LayoutManager suggestionListLayoutManager;
+
+    private SearchSuggestionAdapter searchSuggestionAdapter;
 
     private ActivityArticleListBinding binding;
     private ArticleListViewModel viewModel;
@@ -41,8 +44,9 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         super.onCreate(savedInstanceState);
         initViewModel();
         initDataBinding();
-        setUpRecyclerView();
         setUpListeners();
+        setUpArticleRecyclerView();
+        setUpRecyclerViews();
     }
 
     /***********************************************************************************************
@@ -75,6 +79,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         Log.d(TAG, "onClose: ");
         binding.searchTitle.setVisibility(View.VISIBLE);
         binding.companyName.setVisibility(View.VISIBLE);
+        viewModel.loadSuggestionsFromRoom();
         return false;
     }
 
@@ -92,11 +97,24 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         binding.setLifecycleOwner(this);
     }
 
-    private void setUpRecyclerView(){
-        adapter = new ArticleListAdapter(this);
-        binding.articleListRecyclerView.setAdapter(adapter);
-        layoutManager = new LinearLayoutManager(this);
-        binding.articleListRecyclerView.setLayoutManager(layoutManager);
+
+    private void setUpRecyclerViews(){
+        setUpArticleRecyclerView();
+        setUpSuggestionRecyclerView();
+    }
+
+    private void setUpArticleRecyclerView(){
+        articleListAdapter = new ArticleListAdapter(this);
+        binding.articleListRecyclerView.setAdapter(articleListAdapter);
+        articleListLayoutManager = new LinearLayoutManager(this);
+        binding.articleListRecyclerView.setLayoutManager(articleListLayoutManager);
+    }
+
+    private void setUpSuggestionRecyclerView(){
+        searchSuggestionAdapter = new SearchSuggestionAdapter(this);
+        binding.articleSuggestionRecyclerView.setAdapter(searchSuggestionAdapter);
+        suggestionListLayoutManager = new LinearLayoutManager(this);
+        binding.articleSuggestionRecyclerView.setLayoutManager(suggestionListLayoutManager);
     }
 
     private void initViewModel(){
@@ -113,7 +131,11 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     private void observeViewModel(){
 
         viewModel.getArticlesLiveData().observe(this, articleList  -> {
-            adapter.updateArticle(articleList);
+            articleListAdapter.updateArticle(articleList);
+        });
+
+        viewModel.getSuggestionsLiveData().observe(this, suggestionList -> {
+            searchSuggestionAdapter.updateSuggestions(suggestionList);
         });
 
     }

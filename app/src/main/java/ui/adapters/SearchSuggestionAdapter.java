@@ -14,6 +14,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import models.Article;
 import models.Suggestion;
 
 public class SearchSuggestionAdapter extends RecyclerView.Adapter<SearchSuggestionAdapter.SearchSuggestionViewHolder> {
@@ -44,6 +45,12 @@ public class SearchSuggestionAdapter extends RecyclerView.Adapter<SearchSuggesti
     @Override
     public int getItemCount() {
         return suggestionList.size();
+    }
+
+
+    public void updateSuggestions(List<Suggestion> suggestionList){
+        this.suggestionList = suggestionList;
+        notifyDataSetChanged();
     }
 
     public class SearchSuggestionViewHolder extends RecyclerView.ViewHolder{
