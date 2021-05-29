@@ -57,7 +57,7 @@ public class SearchSuggestionAdapter extends RecyclerView.Adapter<SearchSuggesti
 
         public void bind(int position){
             Suggestion suggestion = suggestionList.get(position);
-            binding.sugggestionText.setText(suggestion.name);
+            binding.setSuggestion(suggestion);
         }
 
 

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="suggestion"
+            type="models.Suggestion" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-
         android:layout_width="match_parent"
         android:layout_height="48dp"
         xmlns:tools="http://schemas.android.com/tools">
@@ -26,6 +30,7 @@
             tools:text="Barack Obama"
             android:paddingLeft="16dp"
             android:fontFamily="@font/cheltenham_italic"
+            android:text="@{suggestion.name}"
             />
         <View
             android:layout_width="match_parent"
