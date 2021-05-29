@@ -66,15 +66,19 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     }
 
     @Override
-    public boolean onQueryTextSubmit(String s) {
+    public boolean onQueryTextSubmit(String searchTerm) {
         viewModel.resetSuggestions();
-        fetchArticles(s);
+        fetchArticles(searchTerm);
         return false;
     }
 
     @Override
-    public boolean onQueryTextChange(String s) {
-        //Fetch similar suggestions
+    public boolean onQueryTextChange(String searchTerm) {
+
+        if(searchTerm.length()%3==0 && searchTerm.length()!=0){
+            viewModel.getSuggestedArticles(searchTerm);
+        }
+
         return false;
     }
 

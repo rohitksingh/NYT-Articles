@@ -38,12 +38,11 @@
             app:layout_constraintStart_toEndOf="@+id/searchIcon"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Barack Obama" />
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:background="@drawable/share"
+            android:background="@drawable/icon_external_link"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

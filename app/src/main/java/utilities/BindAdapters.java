@@ -18,7 +18,7 @@ public class BindAdapters {
 
         Picasso.get()
                 .load(imageUrl)
-                .error(R.drawable.error_image)
+                .error(R.drawable.image_article_not_found)
                 .into(imageView);
     }
 

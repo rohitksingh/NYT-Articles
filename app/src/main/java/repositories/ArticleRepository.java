@@ -16,10 +16,11 @@ import retrofit2.Response;
 public class ArticleRepository implements Callback<SearchAPIResponse>{
 
     private static final String TAG = "ArticleRepository";
+    private Call<SearchAPIResponse> articleGETCall, suggestedArticleGETCall;
 
     private static ArticleRepository articleRepository;
     private MutableLiveData<List<Article>> articleListLiveData = new MutableLiveData<>();
-    private List<Article> sugegstions;
+    private MutableLiveData<List<Article>> suggestedArticleLiveData = new MutableLiveData<>();
 
     public static ArticleRepository getInstance(){
         if(articleRepository==null){
@@ -34,7 +35,12 @@ public class ArticleRepository implements Callback<SearchAPIResponse>{
     @Override
     public void onResponse(Call<SearchAPIResponse> call, Response<SearchAPIResponse> response) {
         List<Article> articleList = response.body().getArticleResponse().getArticles();
-        articleListLiveData.postValue(articleList);
+        if(call==articleGETCall){
+            articleListLiveData.postValue(articleList);
+        }else if(call == suggestedArticleGETCall){
+            Log.d(TAG, "onResponse: ");
+            suggestedArticleLiveData.postValue(articleList);
+        }
     }
 
     @Override
@@ -46,50 +52,21 @@ public class ArticleRepository implements Callback<SearchAPIResponse>{
      *                              Public methods
      **********************************************************************************************/
     public void fetchArticlesFromAPI(String searchTerm){
-        getParsedDataResponse(searchTerm);
+        articleGETCall = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm, "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj");
+        articleGETCall.enqueue(this);
+    }
+
+    public void fetchSuggestedArticlesFromAPI(String searchTerm){
+        suggestedArticleGETCall = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm, "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj");
+        suggestedArticleGETCall.enqueue(this);
     }
 
     public MutableLiveData<List<Article>> getArticleLiveData(){
         return articleListLiveData;
     }
 
-    public List<Article> getSuggestedArticles(){
-        return getDummySuggestions();
-    }
-
-    /***********************************************************************************************
-     *                              Private methods
-     **********************************************************************************************/
-    private void getParsedDataResponse(String searchTerm){
-
-        Call<SearchAPIResponse> call = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm, "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj");
-        call.enqueue(this);
-    }
-
-    private List<Article> getDummySuggestions(){
-
-
-        List<Article> articleList = new ArrayList<>();
-
-        Article a = new Article();
-
-        a.setHeading("McGahn Is Likely to Testify Next Week on Trump’s Efforts to Obstruct Russia Inquiry");
-        a.setThumbnail("images/2021/05/24/us/politics/24dc-mcgahn/merlin_143263482_5b2f3a16-eb5c-45f3-8524-596850cfa509-articleLarge.jpg");
-        a.setUrl("https://www.nytimes.com/2021/05/24/us/politics/donald-mcgahn-trump-russia.html");
-
-        articleList.add(a);
-        articleList.add(a);
-        articleList.add(a);
-        articleList.add(a);
-        articleList.add(a);
-        articleList.add(a);
-        articleList.add(a);
-        articleList.add(a);
-        articleList.add(a);
-
-
-        return articleList;
-
+    public MutableLiveData<List<Article>> getSuggestedArticles(){
+        return suggestedArticleLiveData;
     }
 
 }
