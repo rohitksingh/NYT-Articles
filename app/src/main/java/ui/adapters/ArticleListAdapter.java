@@ -14,16 +14,19 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import listeners.ItemClickListener;
 import models.Article;
 
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ArticleViewHolder> {
 
     public List<Article> articleList;
     private Context context;
+    private ItemClickListener itemClickListener;
 
     public ArticleListAdapter(Context context){
         this.context = context;
         articleList = new ArrayList<>();
+        itemClickListener = (ItemClickListener)context;
     }
 
     @NonNull
@@ -68,6 +71,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         private void bind(int position){
             Article article = articleList.get(position);
             binding.setArticle(article);
+            binding.setItemClickListener(itemClickListener);
         }
     }
 
