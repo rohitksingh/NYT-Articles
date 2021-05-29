@@ -15,8 +15,17 @@ public class ArticleDetailActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        initDataBinding();
     }
 
+
+    private String getArticleUrl(){
+        return "";
+    }
+
+    private void loadWebpage(){
+
+    }
 
     private void initDataBinding(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_article_detail);
