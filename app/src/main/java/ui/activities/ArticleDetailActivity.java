@@ -2,7 +2,11 @@ package ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.rohitksingh.nytimesarticles.R;
 import com.rohitksingh.nytimesarticles.databinding.ActivityArticleDetailBinding;
@@ -10,8 +14,10 @@ import com.rohitksingh.nytimesarticles.databinding.ActivityArticleDetailBinding;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-public class ArticleDetailActivity extends AppCompatActivity {
+public class ArticleDetailActivity extends AppCompatActivity{
 
+    private static final String TAG = "ArticleDetailActivity";
+    
     private ActivityArticleDetailBinding binding;
     private String articleUrl;
 
@@ -33,8 +39,19 @@ public class ArticleDetailActivity extends AppCompatActivity {
     }
 
     private void setUpWebView(){
+
         binding.articleDetailWebView.getSettings().setJavaScriptEnabled(true);
-        binding.articleDetailWebView.setWebViewClient(new WebViewClient());
+
+        binding.articleDetailWebView.setWebViewClient(new WebViewClient() {
+
+            public void onPageFinished(WebView view, String url) {
+                view.setVisibility(View.VISIBLE);
+                binding.loadingAnimation.setVisibility(View.GONE);
+                Log.d(TAG, "onPageFinished: ");
+            }
+        });
+
+
         binding.articleDetailWebView.loadUrl(articleUrl);
     }
 }
