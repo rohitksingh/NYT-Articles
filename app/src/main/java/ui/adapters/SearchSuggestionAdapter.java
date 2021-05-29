@@ -14,6 +14,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import listeners.ItemClickListener;
 import models.Article;
 import models.Suggestion;
 
@@ -21,10 +22,12 @@ public class SearchSuggestionAdapter extends RecyclerView.Adapter<SearchSuggesti
 
     public List<Suggestion> suggestionList;
     private Context context;
+    private ItemClickListener itemClickListener;
 
     public SearchSuggestionAdapter(Context context){
         this.context = context;
         suggestionList = new ArrayList<>();
+        itemClickListener = (ItemClickListener)context;
     }
 
     @NonNull
@@ -65,6 +68,7 @@ public class SearchSuggestionAdapter extends RecyclerView.Adapter<SearchSuggesti
         public void bind(int position){
             Suggestion suggestion = suggestionList.get(position);
             binding.setSuggestion(suggestion);
+            binding.setListener(itemClickListener);
         }
 
 

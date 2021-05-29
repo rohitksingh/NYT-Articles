@@ -5,11 +5,15 @@
         <variable
             name="suggestion"
             type="models.Suggestion" />
+        <variable
+            name="listener"
+            type="listeners.ItemClickListener" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        xmlns:tools="http://schemas.android.com/tools">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:onClick="@{()-> listener.itemClicked(suggestion.name)}">
         <ImageView
             android:id="@+id/searchIcon"
             android:layout_width="24dp"
@@ -18,8 +22,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="16dp"
-            />
+            android:layout_marginLeft="16dp" />
         <TextView
             android:id="@+id/sugggestionText"
             android:layout_width="wrap_content"
@@ -30,8 +33,7 @@
             tools:text="Barack Obama"
             android:paddingLeft="16dp"
             android:fontFamily="@font/cheltenham_italic"
-            android:text="@{suggestion.name}"
-            />
+            android:text="@{suggestion.name}" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

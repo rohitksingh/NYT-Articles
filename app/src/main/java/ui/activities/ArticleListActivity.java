@@ -71,6 +71,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     @Override
     public boolean onQueryTextChange(String s) {
+        //Fetch similar suggestions
         return false;
     }
 
@@ -97,7 +98,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         binding = DataBindingUtil.setContentView(this, R.layout.activity_article_list);
         binding.setLifecycleOwner(this);
     }
-
 
     private void setUpRecyclerViews(){
         setUpArticleRecyclerView();
