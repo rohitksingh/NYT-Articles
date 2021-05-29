@@ -24,7 +24,6 @@ public class ArticleListViewModel extends AndroidViewModel {
         loadArticlesFromAPI();
     }
 
-
     public LiveData<List<Article>> getArticlesLiveData(){
         return articleListLiveData;
     }

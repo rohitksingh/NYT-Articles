@@ -1,7 +1,5 @@
 package utilities;
 
-import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.rohitksingh.nytimesarticles.R;
@@ -24,15 +22,4 @@ public class BindAdapters {
                 .into(imageView);
     }
 
-//    @BindingAdapter("loadingVisibility")
-//    public static void setAnimationVisibility(View view, boolean isVisible){
-//
-//        Log.d(TAG, "setAnimationVisibility: "+isVisible);
-//
-//        if(!isVisible){
-//            view.setVisibility(View.VISIBLE);
-//        }else{
-//            view.setVisibility(View.GONE);
-//        }
-//    }
 }

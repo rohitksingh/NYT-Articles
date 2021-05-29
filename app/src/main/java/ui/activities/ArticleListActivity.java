@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import listeners.ItemClickListener;
@@ -31,6 +30,9 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     public static final String ARTICLE_URL = "ArticleListActivity.ARTICLE_URL";
 
+    /***********************************************************************************************
+     *                              Lefecycyle methods
+     **********************************************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +40,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         initDataBinding();
         setUpRecyclerView();
         initViewModel();
-
-//        setContentView(R.layout.activity_article_list);
 
         searchView = findViewById(R.id.searchView);
         searchTitle = findViewById(R.id.searchTitle);
@@ -61,6 +61,24 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     }
 
+    /***********************************************************************************************
+     *                              Callback methods
+     **********************************************************************************************/
+    @Override
+    public void itemClicked(String articleUrl) {
+        startArticleDetailActivity(articleUrl);
+    }
+
+    public void startArticleDetailActivity(String articleUrl){
+        Intent intent = new Intent(this, ArticleDetailActivity.class);
+        intent.putExtra(ARTICLE_URL, articleUrl);
+        startActivity(intent);
+    }
+
+
+    /***********************************************************************************************
+     *                              private methods
+     **********************************************************************************************/
     private void initDataBinding(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_article_list);
         binding.setLifecycleOwner(this);
@@ -92,14 +110,4 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     }
 
-    @Override
-    public void itemClicked(String articleUrl) {
-        startArticleDetailActivity(articleUrl);
-    }
-
-    public void startArticleDetailActivity(String articleUrl){
-        Intent intent = new Intent(this, ArticleDetailActivity.class);
-        intent.putExtra(ARTICLE_URL, articleUrl);
-        startActivity(intent);
-    }
 }
