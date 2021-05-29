@@ -21,16 +21,35 @@ public class ArticleListViewModel extends AndroidViewModel {
         super(application);
         articleListLiveData = new MutableLiveData<>(new ArrayList<Article>());
         repository = ArticleRepository.getInstance();
-        loadArticlesFromAPI();
     }
 
     public LiveData<List<Article>> getArticlesLiveData(){
         return articleListLiveData;
     }
 
-    private void loadArticlesFromAPI(){
+    public void loadArticlesFromAPI(){
         List<Article> articles = repository.getAllArticles();
-        articleListLiveData.setValue(articles);
+
+        articleListLiveData.postValue(articles);
+
+//        Thread t = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                for(int i=0;i<6;i++){
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//
+//                articleListLiveData.postValue(articles);
+//            }
+//        });
+
+//        t.start();
+
+
     }
 
 

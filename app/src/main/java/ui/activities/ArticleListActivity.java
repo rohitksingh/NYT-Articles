@@ -2,6 +2,7 @@ package ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,10 +19,9 @@ import listeners.ItemClickListener;
 import ui.adapters.ArticleListAdapter;
 import viewmodels.ArticleListViewModel;
 
-public class ArticleListActivity extends AppCompatActivity implements ItemClickListener {
+public class ArticleListActivity extends AppCompatActivity implements ItemClickListener,
+        SearchView.OnQueryTextListener, SearchView.OnCloseListener, View.OnClickListener {
 
-    private SearchView searchView;
-    private TextView searchTitle;
     private ArticleListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -30,35 +30,19 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     public static final String ARTICLE_URL = "ArticleListActivity.ARTICLE_URL";
 
+    private static final String TAG = "ArticleListActivity";
+
     /***********************************************************************************************
      *                              Lefecycyle methods
      **********************************************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
+        super.onCreate(savedInstanceState);
         initViewModel();
         initDataBinding();
         setUpRecyclerView();
-
-        searchView = findViewById(R.id.searchView);
-        searchTitle = findViewById(R.id.searchTitle);
-
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchTitle.setVisibility(View.GONE);
-            }
-        });
-
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                searchTitle.setVisibility(View.VISIBLE);
-                return false;
-            }
-        });
-
+        setUpListeners();
     }
 
     /***********************************************************************************************
@@ -75,6 +59,27 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         startActivity(intent);
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        fetchArticles(s);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onClose() {
+        binding.searchTitle.setVisibility(View.VISIBLE);
+        return false;
+    }
+
+    @Override
+    public void onClick(View view) {
+        binding.searchTitle.setVisibility(View.GONE);
+    }
 
     /***********************************************************************************************
      *                              private methods
@@ -108,6 +113,16 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
             adapter.updateArticle(articleList);
         });
 
+    }
+
+    private void fetchArticles(String searchTerm){
+        viewModel.loadArticlesFromAPI();
+    }
+
+    private void setUpListeners(){
+        binding.searchView.setOnQueryTextListener(this);
+        binding.searchView.setOnSearchClickListener(this);
+        binding.searchView.setOnQueryTextListener(this);
     }
 
 }
