@@ -37,9 +37,9 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        initViewModel();
         initDataBinding();
         setUpRecyclerView();
-        initViewModel();
 
         searchView = findViewById(R.id.searchView);
         searchTitle = findViewById(R.id.searchTitle);
