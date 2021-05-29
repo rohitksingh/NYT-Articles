@@ -37,6 +37,10 @@ public class ArticleListViewModel extends AndroidViewModel {
         suggestionListLiveData.setValue(new ArrayList<>());
     }
 
+    public void resetArticles(){
+        articleListLiveData.setValue(new ArrayList<>());
+    }
+
     //To fetch history 10 Items
     public void loadSuggestionsFromRoom(){
         //List<Article> suggestions = articleRepository.getSuggestedArticles();
