@@ -72,13 +72,16 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     @Override
     public boolean onClose() {
+        Log.d(TAG, "onClose: ");
         binding.searchTitle.setVisibility(View.VISIBLE);
+        binding.companyName.setVisibility(View.VISIBLE);
         return false;
     }
 
     @Override
     public void onClick(View view) {
         binding.searchTitle.setVisibility(View.GONE);
+        binding.companyName.setVisibility(View.GONE);
     }
 
     /***********************************************************************************************
@@ -122,6 +125,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     private void setUpListeners(){
         binding.searchView.setOnQueryTextListener(this);
         binding.searchView.setOnSearchClickListener(this);
+        binding.searchView.setOnCloseListener(this);
         binding.searchView.setOnQueryTextListener(this);
     }
 
