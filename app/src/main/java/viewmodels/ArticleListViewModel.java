@@ -37,6 +37,10 @@ public class ArticleListViewModel extends AndroidViewModel {
         return suggestionListLiveData;
     }
 
+    public void resetSuggestions(){
+        suggestionListLiveData.setValue(new ArrayList<>());
+    }
+
     public void loadSuggestionsFromRoom(){
         List<Suggestion> suggestions = suggestionRepository.getSuggestionList();
         suggestionListLiveData.postValue(suggestions);

@@ -79,7 +79,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         Log.d(TAG, "onClose: ");
         binding.searchTitle.setVisibility(View.VISIBLE);
         binding.companyName.setVisibility(View.VISIBLE);
-        viewModel.loadSuggestionsFromRoom();
+        viewModel.resetSuggestions();
         return false;
     }
 
@@ -87,6 +87,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     public void onClick(View view) {
         binding.searchTitle.setVisibility(View.GONE);
         binding.companyName.setVisibility(View.GONE);
+        viewModel.loadSuggestionsFromRoom();
     }
 
     /***********************************************************************************************
