@@ -80,6 +80,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
             Article article = articleList.get(position);
             binding.setArticle(article);
             binding.setItemClickListener(itemClickListener);
+            binding.executePendingBindings();
         }
     }
 

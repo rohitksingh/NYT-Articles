@@ -8,6 +8,7 @@ import android.view.View;
 import com.rohitksingh.nytimesarticles.R;
 import com.rohitksingh.nytimesarticles.databinding.ActivityArticleListBinding;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import listeners.ItemClickListener;
+
 import ui.adapters.ArticleListAdapter;
 import ui.adapters.ArticleSuggestionAdapter;
 import viewmodels.ArticleListViewModel;
@@ -143,7 +145,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     }
 
     private void fetchArticles(String searchTerm){
-        viewModel.loadArticlesFromAPI();
+        viewModel.loadArticlesFromAPI(searchTerm);
     }
 
     private void setUpListeners(){
