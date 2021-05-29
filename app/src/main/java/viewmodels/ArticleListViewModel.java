@@ -30,7 +30,27 @@ public class ArticleListViewModel extends AndroidViewModel {
 
     private void loadArticlesFromAPI(){
         List<Article> articles = repository.getAllArticles();
-        articleListLiveData.setValue(articles);
+
+        articleListLiveData.postValue(articles);
+
+//        Thread t = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                for(int i=0;i<6;i++){
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//
+//                articleListLiveData.postValue(articles);
+//            }
+//        });
+
+//        t.start();
+
+
     }
 
 
