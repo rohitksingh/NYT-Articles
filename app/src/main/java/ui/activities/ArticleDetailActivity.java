@@ -27,14 +27,16 @@ public class ArticleDetailActivity extends AppCompatActivity{
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        initViewModel();
         initDataBinding();
         getDataFromIntent();
-        initViewModel();
         setUpWebView();
     }
 
     private void initDataBinding(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_article_detail);
+        binding.setViewmodel(viewModel);
+        binding.setLifecycleOwner(this);
     }
 
     private void getDataFromIntent(){
@@ -58,6 +60,8 @@ public class ArticleDetailActivity extends AppCompatActivity{
                 Log.d(TAG, "initViewModel: before"+viewModel.getIsPageLoadingLiveData().getValue());
                 viewModel.setIsPageLoadingLiveData(false);
                 Log.d(TAG, "initViewModel: after"+viewModel.getIsPageLoadingLiveData().getValue());
+
+                viewModel.setLoadingStatusLiveData(1);
 
             }
         });
