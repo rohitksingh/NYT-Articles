@@ -33,7 +33,8 @@
                 android:animateLayoutChanges="true"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:paddingTop="16dp">
+                android:paddingTop="16dp"
+                >
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
                     android:layout_width="wrap_content"
@@ -41,6 +42,7 @@
                     android:background="@color/app_light_blue"
                     app:queryHint="@string/search_article"
                     android:fontFamily="@font/cheltenham_italic"
+                    android:maxWidth="1000dp"
                     />
                 <TextView
                     android:id="@+id/searchTitle"
