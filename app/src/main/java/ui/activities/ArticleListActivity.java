@@ -2,6 +2,7 @@ package ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,7 +19,7 @@ import listeners.ItemClickListener;
 import ui.adapters.ArticleListAdapter;
 import viewmodels.ArticleListViewModel;
 
-public class ArticleListActivity extends AppCompatActivity implements ItemClickListener {
+public class ArticleListActivity extends AppCompatActivity implements ItemClickListener, SearchView.OnQueryTextListener {
 
     private SearchView searchView;
     private TextView searchTitle;
@@ -30,11 +31,14 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     public static final String ARTICLE_URL = "ArticleListActivity.ARTICLE_URL";
 
+    private static final String TAG = "ArticleListActivity";
+
     /***********************************************************************************************
      *                              Lefecycyle methods
      **********************************************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         initViewModel();
@@ -59,6 +63,9 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
             }
         });
 
+        searchView.setOnQueryTextListener(this);
+
+
     }
 
     /***********************************************************************************************
@@ -75,6 +82,18 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         startActivity(intent);
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        Log.d(TAG, "Submit: "+s);
+        fetchArticles(s);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        Log.d(TAG, "onQueryTextChange: "+s);
+        return false;
+    }
 
     /***********************************************************************************************
      *                              private methods
@@ -108,6 +127,10 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
             adapter.updateArticle(articleList);
         });
 
+    }
+
+    private void fetchArticles(String searchTerm){
+        viewModel.loadArticlesFromAPI();
     }
 
 }

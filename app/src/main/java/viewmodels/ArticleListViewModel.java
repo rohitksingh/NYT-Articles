@@ -21,14 +21,13 @@ public class ArticleListViewModel extends AndroidViewModel {
         super(application);
         articleListLiveData = new MutableLiveData<>(new ArrayList<Article>());
         repository = ArticleRepository.getInstance();
-        loadArticlesFromAPI();
     }
 
     public LiveData<List<Article>> getArticlesLiveData(){
         return articleListLiveData;
     }
 
-    private void loadArticlesFromAPI(){
+    public void loadArticlesFromAPI(){
         List<Article> articles = repository.getAllArticles();
 
         articleListLiveData.postValue(articles);
