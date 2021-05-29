@@ -21,8 +21,6 @@ import viewmodels.ArticleListViewModel;
 
 public class ArticleListActivity extends AppCompatActivity implements ItemClickListener, SearchView.OnQueryTextListener {
 
-    private SearchView searchView;
-    private TextView searchTitle;
     private ArticleListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -45,25 +43,24 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         initDataBinding();
         setUpRecyclerView();
 
-        searchView = findViewById(R.id.searchView);
-        searchTitle = findViewById(R.id.searchTitle);
 
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
+        binding.searchView.setOnQueryTextListener(this);
+
+        binding.searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchTitle.setVisibility(View.GONE);
+                binding.searchTitle.setVisibility(View.GONE);
             }
         });
 
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+        binding.searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                searchTitle.setVisibility(View.VISIBLE);
+                binding.searchTitle.setVisibility(View.VISIBLE);
                 return false;
             }
         });
 
-        searchView.setOnQueryTextListener(this);
 
 
     }
