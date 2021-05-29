@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import listeners.ItemClickListener;
 import ui.adapters.ArticleListAdapter;
-import ui.adapters.SearchSuggestionAdapter;
+import ui.adapters.ArticleSuggestionAdapter;
 import viewmodels.ArticleListViewModel;
 
 public class ArticleListActivity extends AppCompatActivity implements ItemClickListener,
@@ -26,7 +26,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     private RecyclerView.LayoutManager articleListLayoutManager;
     private RecyclerView.LayoutManager suggestionListLayoutManager;
 
-    private SearchSuggestionAdapter searchSuggestionAdapter;
+    private ArticleSuggestionAdapter searchSuggestionAdapter;
 
     private ActivityArticleListBinding binding;
     private ArticleListViewModel viewModel;
@@ -112,7 +112,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     }
 
     private void setUpSuggestionRecyclerView(){
-        searchSuggestionAdapter = new SearchSuggestionAdapter(this);
+        searchSuggestionAdapter = new ArticleSuggestionAdapter(this);
         binding.articleSuggestionRecyclerView.setAdapter(searchSuggestionAdapter);
         suggestionListLayoutManager = new LinearLayoutManager(this);
         binding.articleSuggestionRecyclerView.setLayoutManager(suggestionListLayoutManager);

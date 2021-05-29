@@ -2,11 +2,10 @@ package ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.rohitksingh.nytimesarticles.R;
-import com.rohitksingh.nytimesarticles.databinding.ItemSearchSuggestionBinding;
+import com.rohitksingh.nytimesarticles.databinding.ItemArticleSuggestionBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,16 +14,15 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import listeners.ItemClickListener;
-import models.Article;
 import models.Suggestion;
 
-public class SearchSuggestionAdapter extends RecyclerView.Adapter<SearchSuggestionAdapter.SearchSuggestionViewHolder> {
+public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSuggestionAdapter.SearchSuggestionViewHolder> {
 
     public List<Suggestion> suggestionList;
     private Context context;
     private ItemClickListener itemClickListener;
 
-    public SearchSuggestionAdapter(Context context){
+    public ArticleSuggestionAdapter(Context context){
         this.context = context;
         suggestionList = new ArrayList<>();
         itemClickListener = (ItemClickListener)context;
@@ -34,8 +32,8 @@ public class SearchSuggestionAdapter extends RecyclerView.Adapter<SearchSuggesti
     @Override
     public SearchSuggestionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        ItemSearchSuggestionBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                R.layout.item_search_suggestion, parent, false);
+        ItemArticleSuggestionBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                R.layout.item_article_suggestion, parent, false);
 
         return new SearchSuggestionViewHolder(binding);
     }
@@ -58,9 +56,9 @@ public class SearchSuggestionAdapter extends RecyclerView.Adapter<SearchSuggesti
 
     public class SearchSuggestionViewHolder extends RecyclerView.ViewHolder{
 
-        private ItemSearchSuggestionBinding binding;
+        private ItemArticleSuggestionBinding binding;
 
-        public SearchSuggestionViewHolder(@NonNull ItemSearchSuggestionBinding binding) {
+        public SearchSuggestionViewHolder(@NonNull ItemArticleSuggestionBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
