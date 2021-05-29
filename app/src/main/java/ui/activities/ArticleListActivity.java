@@ -8,7 +8,6 @@ import android.view.View;
 import com.rohitksingh.nytimesarticles.R;
 import com.rohitksingh.nytimesarticles.databinding.ActivityArticleListBinding;
 
-import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -17,12 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import listeners.ItemClickListener;
-import models.Article;
-import networkModels.SearchAPIResponse;
-import networks.ServiceGenerator;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
 import ui.adapters.ArticleListAdapter;
 import ui.adapters.ArticleSuggestionAdapter;
 import viewmodels.ArticleListViewModel;
@@ -151,7 +145,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     }
 
     private void fetchArticles(String searchTerm){
-        viewModel.loadArticlesFromAPI();
+        viewModel.loadArticlesFromAPI(searchTerm);
     }
 
     private void setUpListeners(){

@@ -42,8 +42,8 @@ public class ArticleListViewModel extends AndroidViewModel {
         suggestionListLiveData.postValue(suggestions);
     }
 
-    public void loadArticlesFromAPI(){
-        articleRepository.fetchArticlesFromAPI();
+    public void loadArticlesFromAPI(String searchTerm){
+        articleRepository.fetchArticlesFromAPI(searchTerm);
 
 //        articleListLiveData.postValue(articles);
 

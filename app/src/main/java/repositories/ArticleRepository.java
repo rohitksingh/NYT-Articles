@@ -29,8 +29,8 @@ public class ArticleRepository {
         return articleRepository;
     }
 
-    public void fetchArticlesFromAPI(){
-        getParsedDataResponse();
+    public void fetchArticlesFromAPI(String searchTerm){
+        getParsedDataResponse(searchTerm);
     }
 
     public MutableLiveData<List<Article>> getArticleLiveData(){
@@ -69,12 +69,11 @@ public class ArticleRepository {
 //    }
 
 
-    private void getParsedDataResponse(){
-        Call<SearchAPIResponse> call = ServiceGenerator.getArticleAPI().getSearchAPIResponse("Obama", "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj");
+    private void getParsedDataResponse(String searchTerm){
+        Call<SearchAPIResponse> call = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm, "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj");
         call.enqueue(new Callback<SearchAPIResponse>() {
             @Override
             public void onResponse(Call<SearchAPIResponse> call, Response<SearchAPIResponse> response) {
-                //Log.d(TAG, "search API response: " + response.body().getArticleResponse().getArticles().size());
 
                 List<Article> articleList = response.body().getArticleResponse().getArticles();
 
