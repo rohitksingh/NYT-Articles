@@ -64,30 +64,4 @@ public class Article {
         this.heading = heading;
     }
 
-
-    public String getAbstractHeading() {
-        return abstractHeading;
-    }
-    public void setAbstractHeading(String abstractHeading) {
-        this.abstractHeading = abstractHeading;
-    }
-
-    public String getLeadParagraph() {
-        return leadParagraph;
-    }
-    public void setLeadParagraph(String leadParagraph) {
-        this.leadParagraph = leadParagraph;
-    }
-    public List<Multimedia> getMultimediaList() {
-        return multimediaList;
-    }
-    public void setMultimediaList(List<Multimedia> multimediaList) {
-        this.multimediaList = multimediaList;
-    }
-    public Headline getHeadline() {
-        return headline;
-    }
-    public void setHeadline(Headline headline) {
-        this.headline = headline;
-    }
 }
