@@ -29,6 +29,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     private ActivityArticleListBinding binding;
     private ArticleListViewModel viewModel;
 
+    public static final String ARTICLE_URL = "ArticleListActivity.ARTICLE_URL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,9 +90,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
             adapter.updateArticle(articleList);
         });
 
-//        viewModel.getOfferViewModel().observe(this, offerList -> {
-//            adapter.updateOffers(offerList);
-//        });
     }
 
     @Override
@@ -101,6 +99,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     public void startArticleDetailActivity(String articleUrl){
         Intent intent = new Intent(this, ArticleDetailActivity.class);
+        intent.putExtra(ARTICLE_URL, articleUrl);
         startActivity(intent);
     }
 }
