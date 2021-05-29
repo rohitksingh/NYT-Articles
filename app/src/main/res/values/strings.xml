@@ -11,5 +11,12 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="search_article">Search Article</string>
+    <string name="lorem_ipsum">
+        Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem
+        Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum
+        Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum
+        Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum
+        IpsumLorem Ipsum Lorem Ipsum
+    </string>
 
 </resources>
