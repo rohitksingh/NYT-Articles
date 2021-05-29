@@ -9,36 +9,49 @@
         android:layout_height="match_parent"
         tools:context="ui.activities.ArticleListActivity">
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:animateLayoutChanges="true"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/app_light_blue"
-                />
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            android:animateLayoutChanges="true">
             <TextView
-                android:id="@+id/searchTitle"
+                android:id="@+id/companyName"
+                android:text="Search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:text="@string/search_article"
-                android:textSize="16sp"
-                tools:text="@string/search_article" />
+                android:textSize="48dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="240dp"
+                />
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:padding="16dp">
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_light_blue" />
+                <TextView
+                    android:id="@+id/searchTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/search_article"
+                    android:textSize="16sp"
+                    tools:text="@string/search_article" />
+            </LinearLayout>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/articleListRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
