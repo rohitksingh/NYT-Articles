@@ -43,13 +43,14 @@
                 <TextView
                     android:id="@+id/searchTitle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginStart="8dp"
+                    android:paddingLeft="8dp"
                     android:text="@string/search_article"
                     android:textSize="16sp"
                     tools:text="@string/search_article"
                     android:fontFamily="@font/cheltenham_italic"
+                    android:gravity="center_vertical"
                     />
             </LinearLayout>
         </LinearLayout>
