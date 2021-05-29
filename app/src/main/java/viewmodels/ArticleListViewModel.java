@@ -20,9 +20,9 @@ public class ArticleListViewModel extends AndroidViewModel {
 
     public ArticleListViewModel(@NonNull Application application) {
         super(application);
-        articleListLiveData = new MutableLiveData<>(new ArrayList<>());
         suggestionListLiveData = new MutableLiveData<>(new ArrayList<>());
         articleRepository = ArticleRepository.getInstance();
+        articleListLiveData = articleRepository.getArticleLiveData();
     }
 
     public LiveData<List<Article>> getArticlesLiveData(){
@@ -43,9 +43,9 @@ public class ArticleListViewModel extends AndroidViewModel {
     }
 
     public void loadArticlesFromAPI(){
-        List<Article> articles = articleRepository.getAllArticles();
+        articleRepository.fetchArticlesFromAPI();
 
-        articleListLiveData.postValue(articles);
+//        articleListLiveData.postValue(articles);
 
 //        Thread t = new Thread(new Runnable() {
 //            @Override

@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import listeners.ItemClickListener;
-import networkModels.Article;
+import models.Article;
 import networkModels.SearchAPIResponse;
 import networks.ServiceGenerator;
 import retrofit2.Call;
@@ -55,7 +55,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         setUpListeners();
         setUpArticleRecyclerView();
         setUpRecyclerViews();
-        getParsedDataResponse();
     }
 
     /***********************************************************************************************
@@ -160,27 +159,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         binding.searchView.setOnSearchClickListener(this);
         binding.searchView.setOnCloseListener(this);
         binding.searchView.setOnQueryTextListener(this);
-    }
-
-    private void getParsedDataResponse(){
-        Call<SearchAPIResponse> call = ServiceGenerator.getArticleAPI().getSearchAPIResponse("Obama", "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj");
-        call.enqueue(new Callback<SearchAPIResponse>() {
-            @Override
-            public void onResponse(Call<SearchAPIResponse> call, Response<SearchAPIResponse> response) {
-                //Log.d(TAG, "search API response: " + response.body().getArticleResponse().getArticles().size());
-
-                List<Article> articles = response.body().getArticleResponse().getArticles();
-
-                for(Article article: articles){
-                    Log.d(TAG, "search API response: " + article.getWebUrl());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SearchAPIResponse> call, Throwable t) {
-                Log.d(TAG, "search API response failed");
-            }
-        });
     }
 
 }

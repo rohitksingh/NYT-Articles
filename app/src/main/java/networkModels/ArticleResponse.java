@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import models.Article;
+
 public class ArticleResponse {
 
     /*/////////////////////////////////////////////////
