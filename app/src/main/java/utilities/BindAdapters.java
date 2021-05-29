@@ -1,5 +1,6 @@
 package utilities;
 
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.rohitksingh.nytimesarticles.R;
@@ -15,6 +16,8 @@ public class BindAdapters {
     public static void loadArticleImage(ImageView imageView, String imageUrl){
 
         imageUrl = "https://www.nytimes.com/"+imageUrl;
+
+        Log.d(TAG, "loadArticleImagessss: "+imageUrl);
 
         Picasso.get()
                 .load(imageUrl)
