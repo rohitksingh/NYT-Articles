@@ -19,7 +19,8 @@ import listeners.ItemClickListener;
 import ui.adapters.ArticleListAdapter;
 import viewmodels.ArticleListViewModel;
 
-public class ArticleListActivity extends AppCompatActivity implements ItemClickListener, SearchView.OnQueryTextListener {
+public class ArticleListActivity extends AppCompatActivity implements ItemClickListener,
+        SearchView.OnQueryTextListener, SearchView.OnCloseListener, View.OnClickListener {
 
     private ArticleListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -38,31 +39,10 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         initViewModel();
         initDataBinding();
         setUpRecyclerView();
-
-
-        binding.searchView.setOnQueryTextListener(this);
-
-        binding.searchView.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.searchTitle.setVisibility(View.GONE);
-            }
-        });
-
-        binding.searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                binding.searchTitle.setVisibility(View.VISIBLE);
-                return false;
-            }
-        });
-
-
-
+        setUpListeners();
     }
 
     /***********************************************************************************************
@@ -81,15 +61,24 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     @Override
     public boolean onQueryTextSubmit(String s) {
-        Log.d(TAG, "Submit: "+s);
         fetchArticles(s);
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String s) {
-        Log.d(TAG, "onQueryTextChange: "+s);
         return false;
+    }
+
+    @Override
+    public boolean onClose() {
+        binding.searchTitle.setVisibility(View.VISIBLE);
+        return false;
+    }
+
+    @Override
+    public void onClick(View view) {
+        binding.searchTitle.setVisibility(View.GONE);
     }
 
     /***********************************************************************************************
@@ -128,6 +117,12 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     private void fetchArticles(String searchTerm){
         viewModel.loadArticlesFromAPI();
+    }
+
+    private void setUpListeners(){
+        binding.searchView.setOnQueryTextListener(this);
+        binding.searchView.setOnSearchClickListener(this);
+        binding.searchView.setOnQueryTextListener(this);
     }
 
 }
