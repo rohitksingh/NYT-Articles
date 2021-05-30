@@ -45,7 +45,7 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
 
     @Override
     public int getItemCount() {
-        return suggestionList.size();
+        return (suggestionList==null) ? 0 : suggestionList.size();
     }
 
 
