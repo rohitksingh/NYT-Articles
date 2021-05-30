@@ -14,6 +14,7 @@ public class BindAdapters {
     private static final String TAG = "ArticleDetailActivity";
     private static final String IMAGE_BASE_URL = "https://www.nytimes.com/";
 
+
     @BindingAdapter("articleImageUrl")
     public static void loadArticleImage(ImageView imageView, String imageUrl) {
 
@@ -23,6 +24,9 @@ public class BindAdapters {
                 .into(imageView);
     }
 
+    /**
+     * This method is used to hide topic on Article List item if the topic is empty
+     */
     @BindingAdapter(("topicVisibility"))
     public static void setTopicVisibility(TextView textView, String topicName) {
         if (topicName == null || topicName.length() == 0)

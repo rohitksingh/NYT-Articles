@@ -22,9 +22,10 @@ public class ArticleListViewModel extends ViewModel {
         suggestionListLiveData = articleRepository.getSuggestedArticleListLiveData();
     }
 
-    /***********************************************************************************************
-     *                              Getter and Setter methods
+
+    /*                              Getter and Setter methods
      **********************************************************************************************/
+
     public LiveData<List<Article>> getArticlesLiveData() {
         return articleListLiveData;
     }
@@ -33,9 +34,10 @@ public class ArticleListViewModel extends ViewModel {
         return suggestionListLiveData;
     }
 
-    /***********************************************************************************************
-     *                              Public methods
+
+    /*                              Public methods
      **********************************************************************************************/
+
     public void resetSuggestions() {
         suggestionListLiveData.setValue(new ArrayList<>());
     }

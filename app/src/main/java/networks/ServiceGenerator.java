@@ -6,11 +6,12 @@ import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * This class is used to create Article API instance
+ */
 public class ServiceGenerator {
 
     public static final String BASE_URL = "https://api.nytimes.com/";
-
-    private static final String TAG = "ArticleRepository";
 
     public static ArticleAPI getArticleAPI() {
 
@@ -24,6 +25,9 @@ public class ServiceGenerator {
         return retrofit.create(ArticleAPI.class);
     }
 
+    /**
+     * This method is used to HTTP Client for HTTPS Calls
+     */
     private static OkHttpClient getHTTPClient() {
 
         return new OkHttpClient.Builder()
@@ -45,6 +49,9 @@ public class ServiceGenerator {
                 }).build();
     }
 
+    /**
+     * This method is used to append API KEY as query parameter in each network call
+     */
     private static HttpUrl addAPIKey(HttpUrl httpUrl) {
 
         return httpUrl

@@ -25,8 +25,8 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
         this.itemClickListener = itemClickListener;
     }
 
-    /***********************************************************************************************
-     *                              Adapter methods
+
+    /*                              Adapter methods
      **********************************************************************************************/
     @NonNull
     @Override
@@ -49,17 +49,18 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
     }
 
 
-    /***********************************************************************************************
-     *                              Public methods
+    /*                              Public methods
      **********************************************************************************************/
+
     public void updateSuggestions(List<Article> suggestionList) {
         this.suggestionList = suggestionList;
         notifyDataSetChanged();
     }
 
-    /***********************************************************************************************
-     *                              ViewHolder methods
+
+    /*                              ViewHolder methods
      **********************************************************************************************/
+
     public class SearchSuggestionViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemListArticleSuggestionBinding binding;
@@ -74,7 +75,6 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
             binding.setSuggestion(suggestion);
             binding.setListener(itemClickListener);
         }
-
 
     }
 

@@ -2,6 +2,9 @@ package models;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * This class stores all the multimedia and its metadata of an article.
+ */
 public class Multimedia {
 
     @SerializedName("subtype")
