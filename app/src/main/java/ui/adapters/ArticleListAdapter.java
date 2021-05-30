@@ -19,15 +19,13 @@ import models.Article;
 
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ArticleViewHolder> {
 
-    private Context context;
-
     public List<Article> articleList;
 
-    private ItemClickListener itemClickListener;
-    private ShareActionListener shareActionListener;
+    private final ItemClickListener itemClickListener;
+    private final ShareActionListener shareActionListener;
 
+    //TODO: Remove Context
     public ArticleListAdapter(Context context){
-        this.context = context;
         articleList = new ArrayList<>();
         itemClickListener = (ItemClickListener)context;
         shareActionListener = (ShareActionListener)context;
@@ -70,7 +68,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
      **********************************************************************************************/
     class ArticleViewHolder extends RecyclerView.ViewHolder{
 
-        private ItemListArticleBinding binding;
+        private final ItemListArticleBinding binding;
 
         public ArticleViewHolder(@NonNull ItemListArticleBinding binding) {
             super(binding.getRoot());

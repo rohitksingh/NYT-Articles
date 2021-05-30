@@ -14,10 +14,10 @@ import repositories.ArticleRepository;
 
 public class ArticleListViewModel extends AndroidViewModel {
 
-    private ArticleRepository articleRepository;
+    private final ArticleRepository articleRepository;
 
-    private MutableLiveData<List<Article>> articleListLiveData;
-    private MutableLiveData<List<Article>> suggestionListLiveData;
+    private final MutableLiveData<List<Article>> articleListLiveData;
+    private final MutableLiveData<List<Article>> suggestionListLiveData;
 
     public ArticleListViewModel(@NonNull Application application) {
         super(application);
@@ -55,11 +55,5 @@ public class ArticleListViewModel extends AndroidViewModel {
     public void getSuggestedArticles(String keywords){
         articleRepository.fetchSuggestedArticlesFromAPI(keywords);
     }
-
-    //To fetch history 10 Items
-//    public void loadSuggestionsFromRoom(){
-//        //List<Article> suggestions = articleRepository.getSuggestedArticles();
-//        //suggestionListLiveData.postValue(suggestions);
-//    }
 
 }

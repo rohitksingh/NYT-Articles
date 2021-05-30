@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 public class ArticleDetailViewModel extends ViewModel {
 
-    private MutableLiveData<Boolean> isPageLoadingLiveData;
+    private final MutableLiveData<Boolean> isPageLoadingLiveData;
 
     public ArticleDetailViewModel(){
         isPageLoadingLiveData = new MutableLiveData<>(true);

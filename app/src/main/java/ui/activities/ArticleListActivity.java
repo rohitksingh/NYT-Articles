@@ -32,9 +32,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     private ArticleListAdapter articleListAdapter;
     private ArticleSuggestionAdapter searchSuggestionAdapter;
 
-    private RecyclerView.LayoutManager articleListLayoutManager;
-    private RecyclerView.LayoutManager suggestionListLayoutManager;
-
     private ActivityArticleListBinding binding;
     private ArticleListViewModel viewModel;
 
@@ -98,6 +95,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         //Here load past searches
     }
 
+    //TODO MOVE STRING TO RES
     @Override
     public void emailArticle(Article article) {
         Intent intent = new Intent(Intent.ACTION_SEND);
@@ -107,6 +105,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         startActivity(Intent.createChooser(intent, "Send Article"));
     }
 
+    //TODO MOVE STRING TO RES
     @Override
     public void shareArticle(Article article) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -142,14 +141,14 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     private void setUpArticleRecyclerView(){
         articleListAdapter = new ArticleListAdapter(this);
         binding.articleListRecyclerView.setAdapter(articleListAdapter);
-        articleListLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager articleListLayoutManager = new LinearLayoutManager(this);
         binding.articleListRecyclerView.setLayoutManager(articleListLayoutManager);
     }
 
     private void setUpSuggestionRecyclerView(){
         searchSuggestionAdapter = new ArticleSuggestionAdapter(this);
         binding.articleSuggestionRecyclerView.setAdapter(searchSuggestionAdapter);
-        suggestionListLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager suggestionListLayoutManager = new LinearLayoutManager(this);
         binding.articleSuggestionRecyclerView.setLayoutManager(suggestionListLayoutManager);
     }
 
@@ -165,9 +164,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     private void observeViewModel(){
 
-        viewModel.getArticlesLiveData().observe(this, articleList  -> {
-            articleListAdapter.updateArticle(articleList);
-        });
+        viewModel.getArticlesLiveData().observe(this, articleList  -> articleListAdapter.updateArticle(articleList));
 
         viewModel.getSuggestionsLiveData().observe(this, suggestionList -> {
             searchSuggestionAdapter.updateSuggestions(suggestionList);
