@@ -1,26 +1,22 @@
 package viewmodels;
 
-import android.app.Application;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import models.Article;
 import repositories.ArticleRepository;
 
-public class ArticleListViewModel extends AndroidViewModel {
+public class ArticleListViewModel extends ViewModel {
 
     private final ArticleRepository articleRepository;
 
     private final MutableLiveData<List<Article>> articleListLiveData;
     private final MutableLiveData<List<Article>> suggestionListLiveData;
 
-    public ArticleListViewModel(@NonNull Application application) {
-        super(application);
+    public ArticleListViewModel() {
         articleRepository = ArticleRepository.getInstance();
         articleListLiveData = articleRepository.getArticleListLiveData();
         suggestionListLiveData = articleRepository.getSuggestedArticleListLiveData();
@@ -52,7 +48,7 @@ public class ArticleListViewModel extends AndroidViewModel {
         articleRepository.fetchArticlesFromAPI(searchTerm);
     }
 
-    public void getSuggestedArticles(String keywords) {
+    public void loadSuggestedArticles(String keywords) {
         articleRepository.fetchSuggestedArticlesFromAPI(keywords);
     }
 

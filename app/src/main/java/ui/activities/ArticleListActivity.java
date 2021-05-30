@@ -144,12 +144,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     }
 
     private void initViewModel() {
-        ViewModelProvider.AndroidViewModelFactory factory = ViewModelProvider
-                .AndroidViewModelFactory
-                .getInstance(getApplication());
-
-        viewModel = new ViewModelProvider(this, factory).get(ArticleListViewModel.class);
-
+        viewModel = new ViewModelProvider(this).get(ArticleListViewModel.class);
         observeViewModel();
     }
 
@@ -173,7 +168,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     }
 
     private void fetchSuggestedArticles(String searchTerm) {
-        viewModel.getSuggestedArticles(searchTerm);
+        viewModel.loadSuggestedArticles(searchTerm);
     }
 
     private void setUpListeners() {
