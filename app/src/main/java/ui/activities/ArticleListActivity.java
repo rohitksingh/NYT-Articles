@@ -61,7 +61,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     /**
      * Called when Text is submitted by user in search view.
-     * <p>
      * This method is used to search all relevant articles with a search term.
      */
     @Override
@@ -73,7 +72,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     /**
      * Called when user changes text in search view.
-     * <p>
      * This method new suggested articles every time user changes text by 3 characters.
      */
     @Override
@@ -90,7 +88,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     /**
      * Called when search view is collapsed.
-     * <p>
      * This method is used to clear all the suggested articles and searched articles brings back the
      * screen in the initial state when the app is launched.
      */
@@ -105,7 +102,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     /**
      * Called when the search view is expanded
-     * <p>
      * This method is used to slide up the search view.
      */
     @Override
@@ -116,7 +112,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     /**
      * Called when email icon is clicked in the article list.
-     * <p>
      * This method is used to email articles link with external apps.
      */
     @Override
@@ -130,7 +125,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     /**
      * Called when share icon is clicked in the article list.
-     * <p>
      * This method is used to share articles link with external apps.
      */
     @Override
@@ -141,6 +135,19 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         startActivity(Intent.createChooser(shareIntent, getString(R.string.share_article)));
     }
 
+    /**
+     * Called when the back button is pressed.
+     * This method is used to bring back the screen to
+     * initial state when the search view is expanded
+     */
+    @Override
+    public void onBackPressed() {
+        if(!binding.searchView.isIconified()){
+            binding.searchView.setIconified(true);
+        }else{
+            super.onBackPressed();
+        }
+    }
 
     /*                                 Public methods
     /**********************************************************************************************/
