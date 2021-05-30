@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.rohitksingh.nytimesarticles.R;
-import com.rohitksingh.nytimesarticles.databinding.ItemArticleSuggestionBinding;
+import com.rohitksingh.nytimesarticles.databinding.ItemListArticleSuggestionBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +35,8 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
     @Override
     public SearchSuggestionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        ItemArticleSuggestionBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                R.layout.item_article_suggestion, parent, false);
+        ItemListArticleSuggestionBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                R.layout.item_list_article_suggestion, parent, false);
 
         return new SearchSuggestionViewHolder(binding);
     }
@@ -65,9 +65,9 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
      **********************************************************************************************/
     public class SearchSuggestionViewHolder extends RecyclerView.ViewHolder{
 
-        private ItemArticleSuggestionBinding binding;
+        private ItemListArticleSuggestionBinding binding;
 
-        public SearchSuggestionViewHolder(@NonNull ItemArticleSuggestionBinding binding) {
+        public SearchSuggestionViewHolder(@NonNull ItemListArticleSuggestionBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

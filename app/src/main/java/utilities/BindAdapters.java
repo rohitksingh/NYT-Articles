@@ -1,6 +1,5 @@
 package utilities;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,7 +19,7 @@ public class BindAdapters {
 
         Picasso.get()
                 .load(IMAGE_BASE_URL+imageUrl)
-                .error(R.drawable.image_article_not_found)
+                .error(R.drawable.img_article_not_found)
                 .into(imageView);
     }
 

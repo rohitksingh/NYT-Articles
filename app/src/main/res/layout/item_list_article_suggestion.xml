@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{()-> listener.itemClicked(suggestion.url)}"
-        android:background="@drawable/search_view_background"
+        android:background="@drawable/bg_search_view"
         >
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/searchIcon"
@@ -46,7 +46,7 @@
             android:id="@+id/imageView"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:background="@drawable/icon_external_link"
+            android:background="@drawable/ic_external_link"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
