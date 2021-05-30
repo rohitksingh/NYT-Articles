@@ -2,6 +2,7 @@ package repositories;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.lifecycle.MutableLiveData;
@@ -67,6 +68,7 @@ public class ArticleRepository implements Callback<SearchAPIResponse>{
     }
 
     public void fetchArticlesFromAPI(String searchTerm){
+        articleListLiveData.setValue(new ArrayList<>());
         articlesGETRequest = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm);
         articlesGETRequest.enqueue(this);
     }
