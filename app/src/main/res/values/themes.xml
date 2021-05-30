@@ -36,4 +36,10 @@
         <item name="android:textSize">8sp</item>
     </style>
 
+    <style name="ArticleIcon">
+        <item name="android:layout_width">@dimen/icon_size</item>
+        <item name="android:layout_height">@dimen/icon_size</item>
+        <item name="android:layout_marginRight">@dimen/margin_medium</item>
+    </style>
+
 </resources>
