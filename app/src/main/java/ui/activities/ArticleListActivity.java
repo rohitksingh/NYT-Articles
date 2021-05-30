@@ -75,7 +75,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     @Override
     public boolean onQueryTextChange(String searchTerm) {
 
-        if(searchTerm.length()%4==0 && searchTerm.length()!=0){
+        if(searchTerm.length()%3==0 && searchTerm.length()!=0){
             viewModel.getSuggestedArticles(searchTerm);
         }
 
