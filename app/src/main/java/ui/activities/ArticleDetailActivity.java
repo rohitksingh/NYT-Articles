@@ -13,10 +13,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import viewmodels.ArticleDetailViewModel;
 
-public class ArticleDetailActivity extends AppCompatActivity{
+public class ArticleDetailActivity extends AppCompatActivity {
 
-    private static final String TAG = "ArticleDetailActivity";
-    
+    public static final String KEY_ARTICLE_URL = "ArticleDetailActivity.ARTICLE_URL";
+
     private ActivityArticleDetailBinding binding;
     private ArticleDetailViewModel viewModel;
     private String articleUrl;
@@ -25,7 +25,7 @@ public class ArticleDetailActivity extends AppCompatActivity{
      *                              Lifecycle methods
      **********************************************************************************************/
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initViewModel();
         initDataBinding();
@@ -36,18 +36,18 @@ public class ArticleDetailActivity extends AppCompatActivity{
     /***********************************************************************************************
      *                              private methods
      **********************************************************************************************/
-    private void initDataBinding(){
+    private void initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_article_detail);
         binding.setViewmodel(viewModel);
         binding.setLifecycleOwner(this);
     }
 
-    private void getDataFromIntent(){
+    private void getDataFromIntent() {
         Intent intent = getIntent();
-        articleUrl = intent.getStringExtra(ArticleListActivity.ARTICLE_URL);
+        articleUrl = intent.getStringExtra(KEY_ARTICLE_URL);
     }
 
-    private void setUpWebView(){
+    private void setUpWebView() {
 
         binding.articleDetailWebView.getSettings().setJavaScriptEnabled(true);
 
@@ -61,7 +61,7 @@ public class ArticleDetailActivity extends AppCompatActivity{
         binding.articleDetailWebView.loadUrl(articleUrl);
     }
 
-    private void initViewModel(){
+    private void initViewModel() {
         viewModel = new ViewModelProvider(this).get(ArticleDetailViewModel.class);
     }
 }

@@ -7,7 +7,6 @@ import android.view.View;
 import com.rohitksingh.nytimesarticles.R;
 import com.rohitksingh.nytimesarticles.databinding.ActivityArticleListBinding;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
@@ -25,9 +24,6 @@ import viewmodels.ArticleListViewModel;
 public class ArticleListActivity extends AppCompatActivity implements ItemClickListener,
         SearchView.OnQueryTextListener, SearchView.OnCloseListener, View.OnClickListener, ShareActionListener {
 
-    private static final String TAG = "ArticleListActivity";
-
-    public static final String ARTICLE_URL = "ArticleListActivity.ARTICLE_URL";
 
     private ArticleListAdapter articleListAdapter;
     private ArticleSuggestionAdapter searchSuggestionAdapter;
@@ -68,11 +64,9 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     @Override
     public boolean onQueryTextChange(String searchTerm) {
 
-        if(searchTerm.length()%3==0 && searchTerm.length()!=0){
+        if (searchTerm.length() % 3 == 0 && searchTerm.length() != 0) {
             fetchSuggestedArticles(searchTerm);
-        }
-
-        if(searchTerm.length()==0){
+        } else if (searchTerm.length() == 0) {
             viewModel.resetSuggestions();
         }
 
@@ -92,35 +86,32 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     public void onClick(View view) {
         binding.searchTitle.setVisibility(View.GONE);
         binding.companyName.setVisibility(View.GONE);
-        //Here load past searches
     }
 
-    //TODO MOVE STRING TO RES
     @Override
     public void emailArticle(Article article) {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/html");
         intent.putExtra(Intent.EXTRA_SUBJECT, article.getHeading());
         intent.putExtra(Intent.EXTRA_TEXT, article.getUrl());
-        startActivity(Intent.createChooser(intent, "Send Article"));
+        startActivity(Intent.createChooser(intent, getString(R.string.email_article)));
     }
 
-    //TODO MOVE STRING TO RES
     @Override
     public void shareArticle(Article article) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, article.getUrl());
-        startActivity(Intent.createChooser(shareIntent, "Share link using"));
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_article)));
     }
 
 
     /***********************************************************************************************
      *                              Public methods
      **********************************************************************************************/
-    public void startArticleDetailActivity(String articleUrl){
+    public void startArticleDetailActivity(String articleUrl) {
         Intent intent = new Intent(this, ArticleDetailActivity.class);
-        intent.putExtra(ARTICLE_URL, articleUrl);
+        intent.putExtra(ArticleDetailActivity.KEY_ARTICLE_URL, articleUrl);
         startActivity(intent);
     }
 
@@ -128,64 +119,59 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     /***********************************************************************************************
      *                              private methods
      **********************************************************************************************/
-    private void initDataBinding(){
+    private void initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_article_list);
         binding.setLifecycleOwner(this);
     }
 
-    private void setUpRecyclerViews(){
+    private void setUpRecyclerViews() {
         setUpArticleRecyclerView();
         setUpSuggestionRecyclerView();
     }
 
-    private void setUpArticleRecyclerView(){
-        articleListAdapter = new ArticleListAdapter(this);
+    private void setUpArticleRecyclerView() {
+        articleListAdapter = new ArticleListAdapter(this, this);
         binding.articleListRecyclerView.setAdapter(articleListAdapter);
         RecyclerView.LayoutManager articleListLayoutManager = new LinearLayoutManager(this);
         binding.articleListRecyclerView.setLayoutManager(articleListLayoutManager);
     }
 
-    private void setUpSuggestionRecyclerView(){
+    private void setUpSuggestionRecyclerView() {
         searchSuggestionAdapter = new ArticleSuggestionAdapter(this);
         binding.articleSuggestionRecyclerView.setAdapter(searchSuggestionAdapter);
         RecyclerView.LayoutManager suggestionListLayoutManager = new LinearLayoutManager(this);
         binding.articleSuggestionRecyclerView.setLayoutManager(suggestionListLayoutManager);
     }
 
-    private void initViewModel(){
-        ViewModelProvider.AndroidViewModelFactory factory = ViewModelProvider
-                .AndroidViewModelFactory
-                .getInstance(getApplication());
-
-        viewModel = new ViewModelProvider(this, factory).get(ArticleListViewModel.class);
-
+    private void initViewModel() {
+        viewModel = new ViewModelProvider(this).get(ArticleListViewModel.class);
         observeViewModel();
     }
 
-    private void observeViewModel(){
+    private void observeViewModel() {
 
-        viewModel.getArticlesLiveData().observe(this, articleList  -> articleListAdapter.updateArticle(articleList));
+        viewModel.getArticlesLiveData().observe(this, articleList -> articleListAdapter.updateArticle(articleList));
 
         viewModel.getSuggestionsLiveData().observe(this, suggestionList -> {
             searchSuggestionAdapter.updateSuggestions(suggestionList);
-            if(suggestionList.size()==0){
+            if (suggestionList.size() == 0) {
                 binding.articleListRecyclerView.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 binding.articleListRecyclerView.setVisibility(View.GONE);
             }
         });
 
     }
 
-    private void fetchArticles(String searchTerm){
+    private void fetchArticles(String searchTerm) {
         viewModel.loadArticlesFromAPI(searchTerm);
     }
 
-    private void fetchSuggestedArticles(String searchTerm){
-        viewModel.getSuggestedArticles(searchTerm);
+    private void fetchSuggestedArticles(String searchTerm) {
+        viewModel.loadSuggestedArticles(searchTerm);
     }
 
-    private void setUpListeners(){
+    private void setUpListeners() {
         binding.searchView.setOnQueryTextListener(this);
         binding.searchView.setOnSearchClickListener(this);
         binding.searchView.setOnCloseListener(this);

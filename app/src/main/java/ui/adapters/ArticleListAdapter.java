@@ -1,6 +1,5 @@
 package ui.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -24,11 +23,10 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     private final ItemClickListener itemClickListener;
     private final ShareActionListener shareActionListener;
 
-    //TODO: Remove Context
-    public ArticleListAdapter(Context context){
+    public ArticleListAdapter(ItemClickListener itemClickListener, ShareActionListener shareActionListener) {
         articleList = new ArrayList<>();
-        itemClickListener = (ItemClickListener)context;
-        shareActionListener = (ShareActionListener)context;
+        this.itemClickListener = itemClickListener;
+        this.shareActionListener = shareActionListener;
     }
 
     /***********************************************************************************************
@@ -50,14 +48,14 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
 
     @Override
     public int getItemCount() {
-        return articleList.size();
+        return (articleList == null) ? 0 : articleList.size();
     }
 
 
     /***********************************************************************************************
      *                              Public methods
      **********************************************************************************************/
-    public void updateArticle(List<Article> articleList){
+    public void updateArticle(List<Article> articleList) {
         this.articleList = articleList;
         notifyDataSetChanged();
     }
@@ -66,7 +64,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     /***********************************************************************************************
      *                              ViewHolder
      **********************************************************************************************/
-    class ArticleViewHolder extends RecyclerView.ViewHolder{
+    class ArticleViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemListArticleBinding binding;
 
@@ -75,7 +73,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
             this.binding = binding;
         }
 
-        private void bind(int position){
+        private void bind(int position) {
             Article article = articleList.get(position);
             binding.setArticle(article);
             binding.setItemClickListener(itemClickListener);
