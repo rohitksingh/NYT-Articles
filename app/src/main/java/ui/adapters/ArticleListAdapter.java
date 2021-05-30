@@ -19,8 +19,10 @@ import models.Article;
 
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ArticleViewHolder> {
 
-    public List<Article> articleList;
     private Context context;
+
+    public List<Article> articleList;
+
     private ItemClickListener itemClickListener;
     private ShareActionListener shareActionListener;
 
@@ -62,10 +64,6 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         notifyDataSetChanged();
     }
 
-    public void updateItem(int position, Article offer){
-        articleList.set(position, offer);
-        notifyItemChanged(position, offer);
-    }
 
     /***********************************************************************************************
      *                              ViewHolder

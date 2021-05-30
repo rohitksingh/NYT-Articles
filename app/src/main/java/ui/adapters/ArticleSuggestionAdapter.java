@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.rohitksingh.nytimesarticles.R;
-import com.rohitksingh.nytimesarticles.databinding.ItemArticleSuggestionBinding;
+import com.rohitksingh.nytimesarticles.databinding.ItemListArticleSuggestionBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +18,8 @@ import models.Article;
 
 public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSuggestionAdapter.SearchSuggestionViewHolder> {
 
-    public List<Article> suggestionList;
     private Context context;
+    public List<Article> suggestionList;
     private ItemClickListener itemClickListener;
 
     public ArticleSuggestionAdapter(Context context){
@@ -28,12 +28,15 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
         itemClickListener = (ItemClickListener)context;
     }
 
+    /***********************************************************************************************
+     *                              Adapter methods
+     **********************************************************************************************/
     @NonNull
     @Override
     public SearchSuggestionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        ItemArticleSuggestionBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                R.layout.item_article_suggestion, parent, false);
+        ItemListArticleSuggestionBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                R.layout.item_list_article_suggestion, parent, false);
 
         return new SearchSuggestionViewHolder(binding);
     }
@@ -49,16 +52,22 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
     }
 
 
+    /***********************************************************************************************
+     *                              Public methods
+     **********************************************************************************************/
     public void updateSuggestions(List<Article> suggestionList){
         this.suggestionList = suggestionList;
         notifyDataSetChanged();
     }
 
+    /***********************************************************************************************
+     *                              ViewHolder methods
+     **********************************************************************************************/
     public class SearchSuggestionViewHolder extends RecyclerView.ViewHolder{
 
-        private ItemArticleSuggestionBinding binding;
+        private ItemListArticleSuggestionBinding binding;
 
-        public SearchSuggestionViewHolder(@NonNull ItemArticleSuggestionBinding binding) {
+        public SearchSuggestionViewHolder(@NonNull ItemListArticleSuggestionBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

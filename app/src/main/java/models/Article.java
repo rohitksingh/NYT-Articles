@@ -1,27 +1,23 @@
 package models;
 
-import android.util.Log;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import networkModels.Headline;
-import networkModels.Multimedia;
-
 public class Article {
 
-    /*/////////////////////////////////////////////////
-    //PROPERTY
-    /*/////////////////////////////////////////////////
     @SerializedName("abstract")
     private String abstractHeading;
+
     @SerializedName("lead_paragraph")
     private String leadParagraph;
+
     @SerializedName("multimedia")
     private List<Multimedia> multimediaList;
+
     @SerializedName("headline")
     private Headline headline;
+
     @SerializedName("web_url")
     private String url;
 
@@ -31,10 +27,7 @@ public class Article {
     public String thumbnail;
     public String heading;
 
-
-    /*/////////////////////////////////////////////////
-    //PROPERTY
-    /*/////////////////////////////////////////////////
+    //TODO Make ir concise
     public String getThumbnail() {
 
         if(multimediaList==null || multimediaList.size()==0){
@@ -56,6 +49,7 @@ public class Article {
         this.url = url;
     }
 
+    //TODO Make ir concise
     public String getHeading() {
 
         if(headline==null){

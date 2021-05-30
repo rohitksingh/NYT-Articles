@@ -56,7 +56,6 @@ public class ArticleDetailActivity extends AppCompatActivity{
 
             public void onPageFinished(WebView view, String url) {
                 viewModel.setIsPageLoadingLiveData(false);
-                Log.d(TAG, "initViewModel: after"+viewModel.getIsPageLoadingLiveData().getValue());
             }
         });
 

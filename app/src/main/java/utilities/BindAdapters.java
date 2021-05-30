@@ -1,6 +1,5 @@
 package utilities;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,17 +12,14 @@ import androidx.databinding.BindingAdapter;
 public class BindAdapters {
 
     private static final String TAG = "ArticleDetailActivity";
+    private static final String IMAGE_BASE_URL = "https://www.nytimes.com/";
 
     @BindingAdapter("articleImageUrl")
     public static void loadArticleImage(ImageView imageView, String imageUrl){
 
-        imageUrl = "https://www.nytimes.com/"+imageUrl;
-
-        Log.d(TAG, "loadArticleImagessss: "+imageUrl);
-
         Picasso.get()
-                .load(imageUrl)
-                .error(R.drawable.image_article_not_found)
+                .load(IMAGE_BASE_URL+imageUrl)
+                .error(R.drawable.img_article_not_found)
                 .into(imageView);
     }
 

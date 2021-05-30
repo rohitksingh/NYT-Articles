@@ -14,17 +14,21 @@ import repositories.ArticleRepository;
 
 public class ArticleListViewModel extends AndroidViewModel {
 
+    private ArticleRepository articleRepository;
+
     private MutableLiveData<List<Article>> articleListLiveData;
     private MutableLiveData<List<Article>> suggestionListLiveData;
-    private ArticleRepository articleRepository;
 
     public ArticleListViewModel(@NonNull Application application) {
         super(application);
         articleRepository = ArticleRepository.getInstance();
-        articleListLiveData = articleRepository.getArticleLiveData();
-        suggestionListLiveData = articleRepository.getSuggestedArticles();
+        articleListLiveData = articleRepository.getArticleListLiveData();
+        suggestionListLiveData = articleRepository.getSuggestedArticleListLiveData();
     }
 
+    /***********************************************************************************************
+     *                              Getter and Setter methods
+     **********************************************************************************************/
     public LiveData<List<Article>> getArticlesLiveData(){
         return articleListLiveData;
     }
@@ -33,18 +37,15 @@ public class ArticleListViewModel extends AndroidViewModel {
         return suggestionListLiveData;
     }
 
+    /***********************************************************************************************
+     *                              Public methods
+     **********************************************************************************************/
     public void resetSuggestions(){
         suggestionListLiveData.setValue(new ArrayList<>());
     }
 
     public void resetArticles(){
         articleListLiveData.setValue(new ArrayList<>());
-    }
-
-    //To fetch history 10 Items
-    public void loadSuggestionsFromRoom(){
-        //List<Article> suggestions = articleRepository.getSuggestedArticles();
-        //suggestionListLiveData.postValue(suggestions);
     }
 
     public void loadArticlesFromAPI(String searchTerm){
@@ -55,5 +56,10 @@ public class ArticleListViewModel extends AndroidViewModel {
         articleRepository.fetchSuggestedArticlesFromAPI(keywords);
     }
 
+    //To fetch history 10 Items
+    public void loadSuggestionsFromRoom(){
+        //List<Article> suggestions = articleRepository.getSuggestedArticles();
+        //suggestionListLiveData.postValue(suggestions);
+    }
 
 }
