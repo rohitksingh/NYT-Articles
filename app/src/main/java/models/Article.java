@@ -1,5 +1,7 @@
 package models;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -22,6 +24,9 @@ public class Article {
     private Headline headline;
     @SerializedName("web_url")
     private String url;
+
+    @SerializedName("news_desk")
+    private String topic;
 
     public String thumbnail;
     public String heading;
@@ -64,4 +69,11 @@ public class Article {
         this.heading = heading;
     }
 
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
 }

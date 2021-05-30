@@ -17,12 +17,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import listeners.ItemClickListener;
 
+import listeners.ShareActionListener;
+import models.Article;
 import ui.adapters.ArticleListAdapter;
 import ui.adapters.ArticleSuggestionAdapter;
 import viewmodels.ArticleListViewModel;
 
 public class ArticleListActivity extends AppCompatActivity implements ItemClickListener,
-        SearchView.OnQueryTextListener, SearchView.OnCloseListener, View.OnClickListener {
+        SearchView.OnQueryTextListener, SearchView.OnCloseListener, View.OnClickListener, ShareActionListener {
 
     private ArticleListAdapter articleListAdapter;
     private RecyclerView.LayoutManager articleListLayoutManager;
@@ -59,12 +61,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         startArticleDetailActivity(articleUrl);
     }
 
-    public void startArticleDetailActivity(String articleUrl){
-        Intent intent = new Intent(this, ArticleDetailActivity.class);
-        intent.putExtra(ARTICLE_URL, articleUrl);
-        startActivity(intent);
-    }
-
     @Override
     public boolean onQueryTextSubmit(String searchTerm) {
         viewModel.resetSuggestions();
@@ -84,10 +80,10 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     @Override
     public boolean onClose() {
-        Log.d(TAG, "onClose: ");
         binding.searchTitle.setVisibility(View.VISIBLE);
         binding.companyName.setVisibility(View.VISIBLE);
         viewModel.resetSuggestions();
+        viewModel.resetArticles();
         return false;
     }
 
@@ -97,6 +93,14 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         binding.companyName.setVisibility(View.GONE);
         viewModel.loadSuggestionsFromRoom();
     }
+
+
+    public void startArticleDetailActivity(String articleUrl){
+        Intent intent = new Intent(this, ArticleDetailActivity.class);
+        intent.putExtra(ARTICLE_URL, articleUrl);
+        startActivity(intent);
+    }
+
 
     /***********************************************************************************************
      *                              private methods
@@ -159,4 +163,22 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         binding.searchView.setOnQueryTextListener(this);
     }
 
+    @Override
+    public void emailArticle(Article article) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/html");
+        intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+        intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
+
+        startActivity(Intent.createChooser(intent, "Send Email"));
+    }
+
+    @Override
+    public void shareArticle(Article article) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, article.getUrl());
+        startActivity(Intent.createChooser(shareIntent, "Share link using"));
+    }
 }

@@ -35,6 +35,11 @@ public class ArticleRepository implements Callback<SearchAPIResponse>{
     @Override
     public void onResponse(Call<SearchAPIResponse> call, Response<SearchAPIResponse> response) {
         List<Article> articleList = response.body().getArticleResponse().getArticles();
+
+        for(Article article: articleList){
+            Log.d("ArticleRepository1", "onResponse: "+article.getThumbnail());
+        }
+
         if(call==articleGETCall){
             articleListLiveData.postValue(articleList);
         }else if(call == suggestedArticleGETCall){
