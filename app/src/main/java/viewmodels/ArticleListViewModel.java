@@ -57,9 +57,9 @@ public class ArticleListViewModel extends AndroidViewModel {
     }
 
     //To fetch history 10 Items
-    public void loadSuggestionsFromRoom(){
-        //List<Article> suggestions = articleRepository.getSuggestedArticles();
-        //suggestionListLiveData.postValue(suggestions);
-    }
+//    public void loadSuggestionsFromRoom(){
+//        //List<Article> suggestions = articleRepository.getSuggestedArticles();
+//        //suggestionListLiveData.postValue(suggestions);
+//    }
 
 }

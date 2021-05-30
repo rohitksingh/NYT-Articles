@@ -72,7 +72,11 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     public boolean onQueryTextChange(String searchTerm) {
 
         if(searchTerm.length()%3==0 && searchTerm.length()!=0){
-            viewModel.getSuggestedArticles(searchTerm);
+            fetchSuggestedArticles(searchTerm);
+        }
+
+        if(searchTerm.length()==0){
+            viewModel.resetSuggestions();
         }
 
         return false;
@@ -91,7 +95,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     public void onClick(View view) {
         binding.searchTitle.setVisibility(View.GONE);
         binding.companyName.setVisibility(View.GONE);
-        viewModel.loadSuggestionsFromRoom();
+        //Here load past searches
     }
 
     @Override
@@ -167,12 +171,21 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
         viewModel.getSuggestionsLiveData().observe(this, suggestionList -> {
             searchSuggestionAdapter.updateSuggestions(suggestionList);
+            if(suggestionList.size()==0){
+                binding.articleListRecyclerView.setVisibility(View.VISIBLE);
+            }else{
+                binding.articleListRecyclerView.setVisibility(View.GONE);
+            }
         });
 
     }
 
     private void fetchArticles(String searchTerm){
         viewModel.loadArticlesFromAPI(searchTerm);
+    }
+
+    private void fetchSuggestedArticles(String searchTerm){
+        viewModel.getSuggestedArticles(searchTerm);
     }
 
     private void setUpListeners(){
