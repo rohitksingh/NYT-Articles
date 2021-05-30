@@ -80,7 +80,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
     @Override
     public boolean onClose() {
-        Log.d(TAG, "onClose: ");
         binding.searchTitle.setVisibility(View.VISIBLE);
         binding.companyName.setVisibility(View.VISIBLE);
         viewModel.resetSuggestions();
