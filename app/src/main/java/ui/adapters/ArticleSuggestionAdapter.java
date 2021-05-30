@@ -1,6 +1,5 @@
 package ui.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -21,9 +20,9 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
     public List<Article> suggestionList;
     private final ItemClickListener itemClickListener;
 
-    public ArticleSuggestionAdapter(Context context){
+    public ArticleSuggestionAdapter(ItemClickListener itemClickListener){
         suggestionList = new ArrayList<>();
-        itemClickListener = (ItemClickListener)context;
+        this.itemClickListener = itemClickListener;
     }
 
     /***********************************************************************************************

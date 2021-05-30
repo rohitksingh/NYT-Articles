@@ -15,7 +15,7 @@ import viewmodels.ArticleDetailViewModel;
 
 public class ArticleDetailActivity extends AppCompatActivity{
 
-    private static final String TAG = "ArticleDetailActivity";
+    public static final String KEY_ARTICLE_URL = "ArticleDetailActivity.ARTICLE_URL";
     
     private ActivityArticleDetailBinding binding;
     private ArticleDetailViewModel viewModel;
@@ -44,7 +44,7 @@ public class ArticleDetailActivity extends AppCompatActivity{
 
     private void getDataFromIntent(){
         Intent intent = getIntent();
-        articleUrl = intent.getStringExtra(ArticleListActivity.ARTICLE_URL);
+        articleUrl = intent.getStringExtra(KEY_ARTICLE_URL);
     }
 
     private void setUpWebView(){

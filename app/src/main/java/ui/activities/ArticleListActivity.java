@@ -7,7 +7,6 @@ import android.view.View;
 import com.rohitksingh.nytimesarticles.R;
 import com.rohitksingh.nytimesarticles.databinding.ActivityArticleListBinding;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
@@ -25,9 +24,6 @@ import viewmodels.ArticleListViewModel;
 public class ArticleListActivity extends AppCompatActivity implements ItemClickListener,
         SearchView.OnQueryTextListener, SearchView.OnCloseListener, View.OnClickListener, ShareActionListener {
 
-    private static final String TAG = "ArticleListActivity";
-
-    public static final String ARTICLE_URL = "ArticleListActivity.ARTICLE_URL";
 
     private ArticleListAdapter articleListAdapter;
     private ArticleSuggestionAdapter searchSuggestionAdapter;
@@ -70,9 +66,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
         if(searchTerm.length()%3==0 && searchTerm.length()!=0){
             fetchSuggestedArticles(searchTerm);
-        }
-
-        if(searchTerm.length()==0){
+        } else if(searchTerm.length()==0){
             viewModel.resetSuggestions();
         }
 
@@ -92,26 +86,23 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     public void onClick(View view) {
         binding.searchTitle.setVisibility(View.GONE);
         binding.companyName.setVisibility(View.GONE);
-        //Here load past searches
     }
 
-    //TODO MOVE STRING TO RES
     @Override
     public void emailArticle(Article article) {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/html");
         intent.putExtra(Intent.EXTRA_SUBJECT, article.getHeading());
         intent.putExtra(Intent.EXTRA_TEXT, article.getUrl());
-        startActivity(Intent.createChooser(intent, "Send Article"));
+        startActivity(Intent.createChooser(intent, getString(R.string.email_article)));
     }
 
-    //TODO MOVE STRING TO RES
     @Override
     public void shareArticle(Article article) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, article.getUrl());
-        startActivity(Intent.createChooser(shareIntent, "Share link using"));
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_article)));
     }
 
 
@@ -120,7 +111,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
      **********************************************************************************************/
     public void startArticleDetailActivity(String articleUrl){
         Intent intent = new Intent(this, ArticleDetailActivity.class);
-        intent.putExtra(ARTICLE_URL, articleUrl);
+        intent.putExtra(ArticleDetailActivity.KEY_ARTICLE_URL, articleUrl);
         startActivity(intent);
     }
 
@@ -139,7 +130,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     }
 
     private void setUpArticleRecyclerView(){
-        articleListAdapter = new ArticleListAdapter(this);
+        articleListAdapter = new ArticleListAdapter(this, this);
         binding.articleListRecyclerView.setAdapter(articleListAdapter);
         RecyclerView.LayoutManager articleListLayoutManager = new LinearLayoutManager(this);
         binding.articleListRecyclerView.setLayoutManager(articleListLayoutManager);

@@ -1,6 +1,5 @@
 package ui.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -24,11 +23,10 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     private final ItemClickListener itemClickListener;
     private final ShareActionListener shareActionListener;
 
-    //TODO: Remove Context
-    public ArticleListAdapter(Context context){
+    public ArticleListAdapter(ItemClickListener itemClickListener, ShareActionListener shareActionListener){
         articleList = new ArrayList<>();
-        itemClickListener = (ItemClickListener)context;
-        shareActionListener = (ShareActionListener)context;
+        this.itemClickListener = itemClickListener;
+        this.shareActionListener = shareActionListener;
     }
 
     /***********************************************************************************************
