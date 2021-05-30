@@ -20,13 +20,13 @@
             android:id="@+id/searchIcon"
             android:layout_width="36dp"
             android:layout_height="36dp"
+            app:civ_border_color="@color/app_grey"
+            app:civ_border_width="@dimen/line_thickness"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginLeft="@dimen/margin_medium"
             articleImageUrl="@{suggestion.thumbnail}"
-            app:civ_border_color="@color/app_grey"
-            app:civ_border_width="@dimen/line_thickness"
             />
 
         <TextView
