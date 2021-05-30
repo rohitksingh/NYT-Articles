@@ -2,12 +2,11 @@ package repositories;
 
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.lifecycle.MutableLiveData;
 import models.Article;
-import networkModels.SearchAPIResponse;
+import models.SearchAPIResponse;
 import networks.ServiceGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
