@@ -48,7 +48,7 @@
             android:onClick="@{()-> itemClickListener.itemClicked(article.url)}"
             android:padding="@dimen/margin_medium"
             android:text="@{article.heading}"
-            android:textSize="@dimen/margin_medium"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/thumbnail"

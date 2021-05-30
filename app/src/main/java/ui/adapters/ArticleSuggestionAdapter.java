@@ -18,12 +18,10 @@ import models.Article;
 
 public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSuggestionAdapter.SearchSuggestionViewHolder> {
 
-    private Context context;
     public List<Article> suggestionList;
-    private ItemClickListener itemClickListener;
+    private final ItemClickListener itemClickListener;
 
     public ArticleSuggestionAdapter(Context context){
-        this.context = context;
         suggestionList = new ArrayList<>();
         itemClickListener = (ItemClickListener)context;
     }
@@ -65,7 +63,7 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
      **********************************************************************************************/
     public class SearchSuggestionViewHolder extends RecyclerView.ViewHolder{
 
-        private ItemListArticleSuggestionBinding binding;
+        private final ItemListArticleSuggestionBinding binding;
 
         public SearchSuggestionViewHolder(@NonNull ItemListArticleSuggestionBinding binding) {
             super(binding.getRoot());

@@ -2,6 +2,8 @@ package repositories;
 
 import android.util.Log;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +23,8 @@ public class ArticleRepository implements Callback<SearchAPIResponse>{
 
     private static ArticleRepository articleRepository;
 
-    private MutableLiveData<List<Article>> articleListLiveData = new MutableLiveData<>();
-    private MutableLiveData<List<Article>> suggestedArticleListLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<Article>> articleListLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<Article>> suggestedArticleListLiveData = new MutableLiveData<>();
 
     public static ArticleRepository getInstance(){
 
@@ -52,7 +54,7 @@ public class ArticleRepository implements Callback<SearchAPIResponse>{
     }
 
     @Override
-    public void onFailure(Call<SearchAPIResponse> call, Throwable t) {
+    public void onFailure(@NotNull Call<SearchAPIResponse> call, Throwable t) {
         Log.d(TAG, "search API response failed "+t.getMessage());
     }
 
