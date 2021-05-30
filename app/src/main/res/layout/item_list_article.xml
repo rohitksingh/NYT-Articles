@@ -42,16 +42,17 @@
             android:id="@+id/headline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:fontFamily="@font/cheltenham_italic"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="@{()-> itemClickListener.itemClicked(article.url)}"
             android:padding="@dimen/margin_medium"
             android:text="@{article.heading}"
             android:textSize="@dimen/margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/thumbnail"
-            android:fontFamily="@font/cheltenham_italic"
-            tools:text="@string/lorem_ipsum_long"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:onClick="@{()-> itemClickListener.itemClicked(article.url)}"
-            />
+            tools:text="@string/lorem_ipsum_long" />
         <ImageView
             android:id="@+id/share"
             style="@style/ArticleIcon"
@@ -61,7 +62,6 @@
             app:layout_constraintEnd_toEndOf="@+id/headline"
             app:layout_constraintTop_toBottomOf="@+id/headline"
             />
-
         <ImageView
             android:id="@+id/email"
             style="@style/ArticleIcon"
@@ -72,7 +72,6 @@
             app:layout_constraintTop_toBottomOf="@+id/headline"
             android:layout_marginRight="32dp"
             />
-
         <TextView
             android:id="@+id/topic"
             style="@style/ArticleTopic"
@@ -91,6 +90,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/share" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
