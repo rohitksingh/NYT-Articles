@@ -21,8 +21,8 @@ public class ArticleListViewModel extends AndroidViewModel {
     public ArticleListViewModel(@NonNull Application application) {
         super(application);
         articleRepository = ArticleRepository.getInstance();
-        articleListLiveData = articleRepository.getArticleLiveData();
-        suggestionListLiveData = articleRepository.getSuggestedArticles();
+        articleListLiveData = articleRepository.getArticleListLiveData();
+        suggestionListLiveData = articleRepository.getSuggestedArticleListLiveData();
     }
 
     public LiveData<List<Article>> getArticlesLiveData(){

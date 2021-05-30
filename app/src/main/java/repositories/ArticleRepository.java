@@ -15,17 +15,21 @@ import retrofit2.Response;
 public class ArticleRepository implements Callback<SearchAPIResponse>{
 
     private static final String TAG = "ArticleRepository";
-    private Call<SearchAPIResponse> articleGETCall, suggestedArticleGETCall;
+
+    private Call<SearchAPIResponse> articlesGETRequest, suggestedArticlesGETRequest;
 
     private static ArticleRepository articleRepository;
+
     private MutableLiveData<List<Article>> articleListLiveData = new MutableLiveData<>();
-    private MutableLiveData<List<Article>> suggestedArticleLiveData = new MutableLiveData<>();
+    private MutableLiveData<List<Article>> suggestedArticleListLiveData = new MutableLiveData<>();
 
     public static ArticleRepository getInstance(){
+
         if(articleRepository==null){
             articleRepository = new ArticleRepository();
         }
         return articleRepository;
+
     }
 
     /***********************************************************************************************
@@ -33,44 +37,41 @@ public class ArticleRepository implements Callback<SearchAPIResponse>{
      **********************************************************************************************/
     @Override
     public void onResponse(Call<SearchAPIResponse> call, Response<SearchAPIResponse> response) {
+
         List<Article> articleList = response.body().getArticleResponse().getArticles();
 
-        for(Article article: articleList){
-            Log.d("ArticleRepository1", "onResponse: "+article.getThumbnail());
+        if(call== articlesGETRequest){
+            articleListLiveData.postValue(articleList);
+        }else if(call == suggestedArticlesGETRequest){
+            suggestedArticleListLiveData.postValue(articleList);
         }
 
-        if(call==articleGETCall){
-            articleListLiveData.postValue(articleList);
-        }else if(call == suggestedArticleGETCall){
-            Log.d(TAG, "onResponse: ");
-            suggestedArticleLiveData.postValue(articleList);
-        }
     }
 
     @Override
     public void onFailure(Call<SearchAPIResponse> call, Throwable t) {
-        Log.d(TAG, "search API response failed");
+        Log.d(TAG, "search API response failed "+t.getMessage());
     }
 
     /***********************************************************************************************
      *                              Public methods
      **********************************************************************************************/
-    public void fetchArticlesFromAPI(String searchTerm){
-        articleGETCall = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm, "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj");
-        articleGETCall.enqueue(this);
-    }
-
-    public void fetchSuggestedArticlesFromAPI(String searchTerm){
-        suggestedArticleGETCall = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm, "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj");
-        suggestedArticleGETCall.enqueue(this);
-    }
-
-    public MutableLiveData<List<Article>> getArticleLiveData(){
+    public MutableLiveData<List<Article>> getArticleListLiveData(){
         return articleListLiveData;
     }
 
-    public MutableLiveData<List<Article>> getSuggestedArticles(){
-        return suggestedArticleLiveData;
+    public MutableLiveData<List<Article>> getSuggestedArticleListLiveData(){
+        return suggestedArticleListLiveData;
+    }
+
+    public void fetchArticlesFromAPI(String searchTerm){
+        articlesGETRequest = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm, "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj");
+        articlesGETRequest.enqueue(this);
+    }
+
+    public void fetchSuggestedArticlesFromAPI(String searchTerm){
+        suggestedArticlesGETRequest = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm, "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj");
+        suggestedArticlesGETRequest.enqueue(this);
     }
 
 }

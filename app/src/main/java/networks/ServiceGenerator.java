@@ -7,10 +7,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
 
-    //https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj
     public static final String BASE_URL = "https://api.nytimes.com/";
 
-
+    //TODO: Remove depricated API
     public static ArticleAPI getArticleAPI(){
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -23,9 +22,7 @@ public class ServiceGenerator {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-
         return retrofit.create(ArticleAPI.class);
     }
-
 
 }
