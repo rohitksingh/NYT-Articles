@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import listeners.ItemClickListener;
+import listeners.ShareActionListener;
 import models.Article;
 
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ArticleViewHolder> {
@@ -21,11 +22,13 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     public List<Article> articleList;
     private Context context;
     private ItemClickListener itemClickListener;
+    private ShareActionListener shareActionListener;
 
     public ArticleListAdapter(Context context){
         this.context = context;
         articleList = new ArrayList<>();
         itemClickListener = (ItemClickListener)context;
+        shareActionListener = (ShareActionListener)context;
     }
 
     /***********************************************************************************************
@@ -80,6 +83,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
             Article article = articleList.get(position);
             binding.setArticle(article);
             binding.setItemClickListener(itemClickListener);
+            binding.setShareActionListener(shareActionListener);
             binding.executePendingBindings();
         }
     }
