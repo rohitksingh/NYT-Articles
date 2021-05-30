@@ -25,6 +25,9 @@ public class Article {
     @SerializedName("web_url")
     private String url;
 
+    @SerializedName("news_desk")
+    private String topic;
+
     public String thumbnail;
     public String heading;
 
@@ -66,4 +69,11 @@ public class Article {
         this.heading = heading;
     }
 
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
 }
