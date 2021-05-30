@@ -21,33 +21,9 @@ public class ServiceGenerator {
 
     public static ArticleAPI getArticleAPI(){
 
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        Request original = chain.request();
-                        HttpUrl httpUrl = original.url();
-
-                        HttpUrl newHttpUrl = httpUrl
-                                .newBuilder()
-                                .addQueryParameter("api-key", "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj")
-                                .build();
-
-                        Request.Builder requestBuilder = original
-                                .newBuilder()
-                                .url(newHttpUrl);
-
-                        Request request = requestBuilder
-                                .build();
-
-                        return chain.proceed(request);
-                    }
-                }).build();
-
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(client)
+                .client(getHTTPClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -57,7 +33,37 @@ public class ServiceGenerator {
 
     private static OkHttpClient getHTTPClient(){
 
-        return null;
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+
+                        Request originalRequest = chain.request();
+                        HttpUrl httpUrl = originalRequest.url();
+
+                        HttpUrl updatedHttpUrl = addAPIKey(httpUrl);
+
+                        Request.Builder requestBuilder = originalRequest
+                                .newBuilder()
+                                .url(updatedHttpUrl);
+
+                        Request modifiedRequest = requestBuilder
+                                .build();
+
+                        return chain.proceed(modifiedRequest);
+                    }
+                }).build();
+
+        return client;
+    }
+
+    private static HttpUrl addAPIKey(HttpUrl httpUrl){
+        HttpUrl newHttpUrl = httpUrl
+                .newBuilder()
+                .addQueryParameter("api-key", "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj")
+                .build();
+
+        return newHttpUrl;
     }
 
 }
