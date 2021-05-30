@@ -13,43 +13,43 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{()-> listener.itemClicked(suggestion.url)}"
         android:background="@drawable/bg_search_view"
         android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{()-> listener.itemClicked(suggestion.url)}"
         android:clickable="true">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/searchIcon"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            app:civ_border_color="@color/app_grey"
-            app:civ_border_width="@dimen/line_thickness"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:civ_border_color="@color/app_grey"
+            app:civ_border_width="@dimen/line_thickness"
             android:layout_marginLeft="@dimen/margin_medium"
-            articleImageUrl="@{suggestion.thumbnail}"
-            />
+            articleImageUrl="@{suggestion.thumbnail}" />
         <TextView
             android:id="@+id/suggestionText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/cheltenham_italic"
-            android:padding="16dp"
-            android:text="@{suggestion.heading}"
-            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toEndOf="@+id/searchIcon"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/lorem_ipsum" />
+            android:padding="@dimen/padding_small"
+            tools:text="@string/lorem_ipsum"
+            android:text="@{suggestion.heading}"
+            android:textSize="12sp"
+            android:fontFamily="@font/cheltenham_italic"
+            />
         <ImageView
             android:id="@+id/imageView"
             style="@style/ArticleIcon"
-            android:background="@drawable/ic_external_link"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:onClick="@{()-> listener.itemClicked(suggestion.url)}"
+            android:background="@drawable/ic_external_link"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
