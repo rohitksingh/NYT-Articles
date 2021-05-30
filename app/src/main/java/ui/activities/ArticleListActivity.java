@@ -98,11 +98,9 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     public void emailArticle(Article article) {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/html");
-        intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
-        intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
-
-        startActivity(Intent.createChooser(intent, "Send Email"));
+        intent.putExtra(Intent.EXTRA_SUBJECT, article.getHeading());
+        intent.putExtra(Intent.EXTRA_TEXT, article.getUrl());
+        startActivity(Intent.createChooser(intent, "Send Article"));
     }
 
     @Override
