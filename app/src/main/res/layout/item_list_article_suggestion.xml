@@ -30,7 +30,7 @@
             articleImageUrl="@{suggestion.thumbnail}"
             />
         <TextView
-            android:id="@+id/sugggestionText"
+            android:id="@+id/suggestionText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cheltenham_italic"

@@ -37,7 +37,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
 
 
     /***********************************************************************************************
-     *                              Lefecycyle methods
+     *                              Lifecycle methods
      **********************************************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
