@@ -15,7 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ArticleRepository implements Callback<SearchAPIResponse>{
+public class ArticleRepository implements Callback<SearchAPIResponse> {
 
     private static final String TAG = "ArticleRepository";
 
@@ -26,9 +26,9 @@ public class ArticleRepository implements Callback<SearchAPIResponse>{
     private final MutableLiveData<List<Article>> articleListLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Article>> suggestedArticleListLiveData = new MutableLiveData<>();
 
-    public static ArticleRepository getInstance(){
+    public static ArticleRepository getInstance() {
 
-        if(articleRepository==null){
+        if (articleRepository == null) {
             articleRepository = new ArticleRepository();
         }
         return articleRepository;
@@ -41,13 +41,13 @@ public class ArticleRepository implements Callback<SearchAPIResponse>{
     @Override
     public void onResponse(Call<SearchAPIResponse> call, Response<SearchAPIResponse> response) {
 
-        Log.d(TAG, "onResponse: "+call.request().url());
+        Log.d(TAG, "onResponse: " + call.request().url());
 
         List<Article> articleList = response.body().getArticleResponse().getArticles();
 
-        if(call== articlesGETRequest){
+        if (call == articlesGETRequest) {
             articleListLiveData.postValue(articleList);
-        }else if(call == suggestedArticlesGETRequest){
+        } else if (call == suggestedArticlesGETRequest) {
             suggestedArticleListLiveData.postValue(articleList);
         }
 
@@ -55,27 +55,27 @@ public class ArticleRepository implements Callback<SearchAPIResponse>{
 
     @Override
     public void onFailure(@NotNull Call<SearchAPIResponse> call, Throwable t) {
-        Log.d(TAG, "search API response failed "+t.getMessage());
+        Log.d(TAG, "search API response failed " + t.getMessage());
     }
 
     /***********************************************************************************************
      *                              Public methods
      **********************************************************************************************/
-    public MutableLiveData<List<Article>> getArticleListLiveData(){
+    public MutableLiveData<List<Article>> getArticleListLiveData() {
         return articleListLiveData;
     }
 
-    public MutableLiveData<List<Article>> getSuggestedArticleListLiveData(){
+    public MutableLiveData<List<Article>> getSuggestedArticleListLiveData() {
         return suggestedArticleListLiveData;
     }
 
-    public void fetchArticlesFromAPI(String searchTerm){
+    public void fetchArticlesFromAPI(String searchTerm) {
         articleListLiveData.setValue(new ArrayList<>());
         articlesGETRequest = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm);
         articlesGETRequest.enqueue(this);
     }
 
-    public void fetchSuggestedArticlesFromAPI(String searchTerm){
+    public void fetchSuggestedArticlesFromAPI(String searchTerm) {
         suggestedArticlesGETRequest = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm);
         suggestedArticlesGETRequest.enqueue(this);
     }

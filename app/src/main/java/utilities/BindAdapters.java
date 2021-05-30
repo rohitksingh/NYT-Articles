@@ -15,17 +15,17 @@ public class BindAdapters {
     private static final String IMAGE_BASE_URL = "https://www.nytimes.com/";
 
     @BindingAdapter("articleImageUrl")
-    public static void loadArticleImage(ImageView imageView, String imageUrl){
+    public static void loadArticleImage(ImageView imageView, String imageUrl) {
 
         Picasso.get()
-                .load(IMAGE_BASE_URL+imageUrl)
+                .load(IMAGE_BASE_URL + imageUrl)
                 .error(R.drawable.img_article_not_found)
                 .into(imageView);
     }
 
     @BindingAdapter(("topicVisibility"))
-    public static void setTopicVisibility(TextView textView, String topicName){
-        if(topicName==null || topicName.length()==0)
+    public static void setTopicVisibility(TextView textView, String topicName) {
+        if (topicName == null || topicName.length() == 0)
             textView.setVisibility(View.GONE);
     }
 

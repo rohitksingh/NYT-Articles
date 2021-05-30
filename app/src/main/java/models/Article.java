@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Article {
 
+
     @SerializedName("abstract")
     private String abstractHeading;
 
@@ -28,7 +29,7 @@ public class Article {
     public String heading;
 
     public String getThumbnail() {
-         return (multimediaList==null || multimediaList.size()==0) ? "" : multimediaList.get(0).getImageUrl();
+        return (multimediaList == null || multimediaList.size() == 0) ? "" : multimediaList.get(0).getImageUrl();
     }
 
     public void setThumbnail(String thumbnail) {
@@ -44,7 +45,7 @@ public class Article {
     }
 
     public String getHeading() {
-        return (headline==null) ? "" : headline.getMainHeadline();
+        return (headline == null) ? "" : headline.getMainHeadline();
     }
 
     public void setHeading(String heading) {

@@ -29,30 +29,30 @@ public class ArticleListViewModel extends AndroidViewModel {
     /***********************************************************************************************
      *                              Getter and Setter methods
      **********************************************************************************************/
-    public LiveData<List<Article>> getArticlesLiveData(){
+    public LiveData<List<Article>> getArticlesLiveData() {
         return articleListLiveData;
     }
 
-    public LiveData<List<Article>> getSuggestionsLiveData(){
+    public LiveData<List<Article>> getSuggestionsLiveData() {
         return suggestionListLiveData;
     }
 
     /***********************************************************************************************
      *                              Public methods
      **********************************************************************************************/
-    public void resetSuggestions(){
+    public void resetSuggestions() {
         suggestionListLiveData.setValue(new ArrayList<>());
     }
 
-    public void resetArticles(){
+    public void resetArticles() {
         articleListLiveData.setValue(new ArrayList<>());
     }
 
-    public void loadArticlesFromAPI(String searchTerm){
+    public void loadArticlesFromAPI(String searchTerm) {
         articleRepository.fetchArticlesFromAPI(searchTerm);
     }
 
-    public void getSuggestedArticles(String keywords){
+    public void getSuggestedArticles(String keywords) {
         articleRepository.fetchSuggestedArticlesFromAPI(keywords);
     }
 

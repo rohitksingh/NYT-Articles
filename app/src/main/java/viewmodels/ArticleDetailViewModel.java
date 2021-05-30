@@ -8,7 +8,7 @@ public class ArticleDetailViewModel extends ViewModel {
 
     private final MutableLiveData<Boolean> isPageLoadingLiveData;
 
-    public ArticleDetailViewModel(){
+    public ArticleDetailViewModel() {
         isPageLoadingLiveData = new MutableLiveData<>(true);
     }
 
@@ -16,7 +16,7 @@ public class ArticleDetailViewModel extends ViewModel {
         return isPageLoadingLiveData;
     }
 
-    public void setIsPageLoadingLiveData(boolean isPageLoading){
+    public void setIsPageLoadingLiveData(boolean isPageLoading) {
         isPageLoadingLiveData.setValue(isPageLoading);
     }
 

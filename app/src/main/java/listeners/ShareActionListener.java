@@ -4,7 +4,7 @@ import models.Article;
 
 public interface ShareActionListener {
 
-    void emailArticle(Article article);
+    void emailArticle(Article artcle);
 
     void shareArticle(Article article);
 

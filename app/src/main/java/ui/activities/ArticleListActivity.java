@@ -64,9 +64,9 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     @Override
     public boolean onQueryTextChange(String searchTerm) {
 
-        if(searchTerm.length()%3==0 && searchTerm.length()!=0){
+        if (searchTerm.length() % 3 == 0 && searchTerm.length() != 0) {
             fetchSuggestedArticles(searchTerm);
-        } else if(searchTerm.length()==0){
+        } else if (searchTerm.length() == 0) {
             viewModel.resetSuggestions();
         }
 
@@ -109,7 +109,7 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     /***********************************************************************************************
      *                              Public methods
      **********************************************************************************************/
-    public void startArticleDetailActivity(String articleUrl){
+    public void startArticleDetailActivity(String articleUrl) {
         Intent intent = new Intent(this, ArticleDetailActivity.class);
         intent.putExtra(ArticleDetailActivity.KEY_ARTICLE_URL, articleUrl);
         startActivity(intent);
@@ -119,31 +119,31 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
     /***********************************************************************************************
      *                              private methods
      **********************************************************************************************/
-    private void initDataBinding(){
+    private void initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_article_list);
         binding.setLifecycleOwner(this);
     }
 
-    private void setUpRecyclerViews(){
+    private void setUpRecyclerViews() {
         setUpArticleRecyclerView();
         setUpSuggestionRecyclerView();
     }
 
-    private void setUpArticleRecyclerView(){
+    private void setUpArticleRecyclerView() {
         articleListAdapter = new ArticleListAdapter(this, this);
         binding.articleListRecyclerView.setAdapter(articleListAdapter);
         RecyclerView.LayoutManager articleListLayoutManager = new LinearLayoutManager(this);
         binding.articleListRecyclerView.setLayoutManager(articleListLayoutManager);
     }
 
-    private void setUpSuggestionRecyclerView(){
+    private void setUpSuggestionRecyclerView() {
         searchSuggestionAdapter = new ArticleSuggestionAdapter(this);
         binding.articleSuggestionRecyclerView.setAdapter(searchSuggestionAdapter);
         RecyclerView.LayoutManager suggestionListLayoutManager = new LinearLayoutManager(this);
         binding.articleSuggestionRecyclerView.setLayoutManager(suggestionListLayoutManager);
     }
 
-    private void initViewModel(){
+    private void initViewModel() {
         ViewModelProvider.AndroidViewModelFactory factory = ViewModelProvider
                 .AndroidViewModelFactory
                 .getInstance(getApplication());
@@ -153,30 +153,30 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         observeViewModel();
     }
 
-    private void observeViewModel(){
+    private void observeViewModel() {
 
-        viewModel.getArticlesLiveData().observe(this, articleList  -> articleListAdapter.updateArticle(articleList));
+        viewModel.getArticlesLiveData().observe(this, articleList -> articleListAdapter.updateArticle(articleList));
 
         viewModel.getSuggestionsLiveData().observe(this, suggestionList -> {
             searchSuggestionAdapter.updateSuggestions(suggestionList);
-            if(suggestionList.size()==0){
+            if (suggestionList.size() == 0) {
                 binding.articleListRecyclerView.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 binding.articleListRecyclerView.setVisibility(View.GONE);
             }
         });
 
     }
 
-    private void fetchArticles(String searchTerm){
+    private void fetchArticles(String searchTerm) {
         viewModel.loadArticlesFromAPI(searchTerm);
     }
 
-    private void fetchSuggestedArticles(String searchTerm){
+    private void fetchSuggestedArticles(String searchTerm) {
         viewModel.getSuggestedArticles(searchTerm);
     }
 
-    private void setUpListeners(){
+    private void setUpListeners() {
         binding.searchView.setOnQueryTextListener(this);
         binding.searchView.setOnSearchClickListener(this);
         binding.searchView.setOnCloseListener(this);

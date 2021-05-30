@@ -12,7 +12,7 @@ public class ServiceGenerator {
 
     private static final String TAG = "ArticleRepository";
 
-    public static ArticleAPI getArticleAPI(){
+    public static ArticleAPI getArticleAPI() {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -24,7 +24,7 @@ public class ServiceGenerator {
         return retrofit.create(ArticleAPI.class);
     }
 
-    private static OkHttpClient getHTTPClient(){
+    private static OkHttpClient getHTTPClient() {
 
         return new OkHttpClient.Builder()
                 .addInterceptor(chain -> {
@@ -45,7 +45,7 @@ public class ServiceGenerator {
                 }).build();
     }
 
-    private static HttpUrl addAPIKey(HttpUrl httpUrl){
+    private static HttpUrl addAPIKey(HttpUrl httpUrl) {
 
         return httpUrl
                 .newBuilder()

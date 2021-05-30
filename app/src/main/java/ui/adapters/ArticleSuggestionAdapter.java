@@ -20,7 +20,7 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
     public List<Article> suggestionList;
     private final ItemClickListener itemClickListener;
 
-    public ArticleSuggestionAdapter(ItemClickListener itemClickListener){
+    public ArticleSuggestionAdapter(ItemClickListener itemClickListener) {
         suggestionList = new ArrayList<>();
         this.itemClickListener = itemClickListener;
     }
@@ -45,14 +45,14 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
 
     @Override
     public int getItemCount() {
-        return (suggestionList==null) ? 0 : suggestionList.size();
+        return (suggestionList == null) ? 0 : suggestionList.size();
     }
 
 
     /***********************************************************************************************
      *                              Public methods
      **********************************************************************************************/
-    public void updateSuggestions(List<Article> suggestionList){
+    public void updateSuggestions(List<Article> suggestionList) {
         this.suggestionList = suggestionList;
         notifyDataSetChanged();
     }
@@ -60,7 +60,7 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
     /***********************************************************************************************
      *                              ViewHolder methods
      **********************************************************************************************/
-    public class SearchSuggestionViewHolder extends RecyclerView.ViewHolder{
+    public class SearchSuggestionViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemListArticleSuggestionBinding binding;
 
@@ -69,7 +69,7 @@ public class ArticleSuggestionAdapter extends RecyclerView.Adapter<ArticleSugges
             this.binding = binding;
         }
 
-        public void bind(int position){
+        public void bind(int position) {
             Article suggestion = suggestionList.get(position);
             binding.setSuggestion(suggestion);
             binding.setListener(itemClickListener);
