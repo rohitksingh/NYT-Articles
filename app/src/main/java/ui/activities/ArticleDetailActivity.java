@@ -21,9 +21,10 @@ public class ArticleDetailActivity extends AppCompatActivity {
     private ArticleDetailViewModel viewModel;
     private String articleUrl;
 
-    /***********************************************************************************************
-     *                              Lifecycle methods
+
+    /*                              Lifecycle methods
      **********************************************************************************************/
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,32 +34,38 @@ public class ArticleDetailActivity extends AppCompatActivity {
         setUpWebView();
     }
 
-    /***********************************************************************************************
-     *                              private methods
-     **********************************************************************************************/
-    private void initDataBinding() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_article_detail);
-        binding.setViewmodel(viewModel);
-        binding.setLifecycleOwner(this);
-    }
 
+    /*                              private methods
+     **********************************************************************************************/
+
+    /**
+     * This method is used to retrieve the web url sent from ArticleListActivity
+     */
     private void getDataFromIntent() {
         Intent intent = getIntent();
         articleUrl = intent.getStringExtra(KEY_ARTICLE_URL);
     }
 
+    /**
+     * This method is used to load a web page using a web url
+     */
     private void setUpWebView() {
 
         binding.articleDetailWebView.getSettings().setJavaScriptEnabled(true);
 
         binding.articleDetailWebView.setWebViewClient(new WebViewClient() {
-
             public void onPageFinished(WebView view, String url) {
                 viewModel.setIsPageLoadingLiveData(false);
             }
         });
 
         binding.articleDetailWebView.loadUrl(articleUrl);
+    }
+
+    private void initDataBinding() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_article_detail);
+        binding.setViewmodel(viewModel);
+        binding.setLifecycleOwner(this);
     }
 
     private void initViewModel() {

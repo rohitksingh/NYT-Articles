@@ -29,8 +29,8 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         this.shareActionListener = shareActionListener;
     }
 
-    /***********************************************************************************************
-     *                              Adapter methods
+
+    /*                              Adapter methods
      **********************************************************************************************/
     @NonNull
     @Override
@@ -52,18 +52,18 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     }
 
 
-    /***********************************************************************************************
-     *                              Public methods
+    /*                              Public methods
      **********************************************************************************************/
+
     public void updateArticle(List<Article> articleList) {
         this.articleList = articleList;
         notifyDataSetChanged();
     }
 
 
-    /***********************************************************************************************
-     *                              ViewHolder
+    /*                              ViewHolder
      **********************************************************************************************/
+
     class ArticleViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemListArticleBinding binding;

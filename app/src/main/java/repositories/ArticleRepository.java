@@ -32,16 +32,14 @@ public class ArticleRepository implements Callback<SearchAPIResponse> {
             articleRepository = new ArticleRepository();
         }
         return articleRepository;
-
     }
 
-    /***********************************************************************************************
-     *                              Callback methods
+
+    /*                              Callback methods
      **********************************************************************************************/
+
     @Override
     public void onResponse(Call<SearchAPIResponse> call, Response<SearchAPIResponse> response) {
-
-        Log.d(TAG, "onResponse: " + call.request().url());
 
         List<Article> articleList = response.body().getArticleResponse().getArticles();
 
@@ -58,9 +56,10 @@ public class ArticleRepository implements Callback<SearchAPIResponse> {
         Log.d(TAG, "search API response failed " + t.getMessage());
     }
 
-    /***********************************************************************************************
-     *                              Public methods
+
+    /*                              Public methods
      **********************************************************************************************/
+
     public MutableLiveData<List<Article>> getArticleListLiveData() {
         return articleListLiveData;
     }
@@ -69,12 +68,18 @@ public class ArticleRepository implements Callback<SearchAPIResponse> {
         return suggestedArticleListLiveData;
     }
 
+    /**
+     * This method is used to fetch related articles from API
+     */
     public void fetchArticlesFromAPI(String searchTerm) {
         articleListLiveData.setValue(new ArrayList<>());
         articlesGETRequest = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm);
         articlesGETRequest.enqueue(this);
     }
 
+    /**
+     * This method is used to suggested fetch related articles from API
+     */
     public void fetchSuggestedArticlesFromAPI(String searchTerm) {
         suggestedArticlesGETRequest = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm);
         suggestedArticlesGETRequest.enqueue(this);
