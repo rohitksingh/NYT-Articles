@@ -15,7 +15,9 @@
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true">
         <androidx.cardview.widget.CardView
             android:id="@+id/thumbnail"
             android:layout_width="0sp"
@@ -42,36 +44,43 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_medium"
             android:text="@{article.heading}"
+            android:textSize="@dimen/margin_medium"
             app:layout_constraintTop_toBottomOf="@+id/thumbnail"
             android:fontFamily="@font/cheltenham_italic"
             tools:text="@string/lorem_ipsum_long" />
+
         <ImageView
             android:id="@+id/share"
             style="@style/ArticleIcon"
             android:background="@drawable/ic_share"
+            android:onClick="@{()-> shareActionListener.shareArticle(article)}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/headline"
             app:layout_constraintTop_toBottomOf="@+id/headline"
-            android:onClick="@{()-> shareActionListener.shareArticle(article)}"
             />
+
         <ImageView
             android:id="@+id/email"
             style="@style/ArticleIcon"
             android:background="@drawable/ic_email"
+            android:onClick="@{() -> shareActionListener.emailArticle(article)}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/share"
             app:layout_constraintTop_toBottomOf="@+id/headline"
-            android:onClick="@{() -> shareActionListener.emailArticle(article)}"
+            android:layout_marginRight="32dp"
             />
+
         <TextView
             android:id="@+id/topic"
+            style="@style/ArticleTopic"
+            topicVisibility="@{article.topic}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/ArticleTopic"
             android:text="@{article.topic}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/headline"
-            topicVisibility="@{article.topic}"
-            tools:text="@string/lorem_ipsum"
-            />
+            tools:text="@string/lorem_ipsum" />
         <View
             android:id="@+id/line"
             style="@style/Line"

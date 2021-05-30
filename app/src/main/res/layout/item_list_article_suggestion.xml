@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:onClick="@{()-> listener.itemClicked(suggestion.url)}"
         android:background="@drawable/bg_search_view"
-        >
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/searchIcon"
             android:layout_width="36dp"

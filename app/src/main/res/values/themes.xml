@@ -40,6 +40,8 @@
         <item name="android:layout_width">@dimen/icon_size</item>
         <item name="android:layout_height">@dimen/icon_size</item>
         <item name="android:layout_marginRight">@dimen/margin_medium</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
     </style>
 
     <style name="Line">
