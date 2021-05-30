@@ -15,9 +15,7 @@
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true">
+        android:layout_height="wrap_content">
         <androidx.cardview.widget.CardView
             android:id="@+id/thumbnail"
             android:layout_width="0sp"
@@ -28,6 +26,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="@dimen/margin_medium"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
             android:onClick="@{()-> itemClickListener.itemClicked(article.url)}">
             <ImageView
                 android:layout_width="match_parent"
@@ -47,8 +47,11 @@
             android:textSize="@dimen/margin_medium"
             app:layout_constraintTop_toBottomOf="@+id/thumbnail"
             android:fontFamily="@font/cheltenham_italic"
-            tools:text="@string/lorem_ipsum_long" />
-
+            tools:text="@string/lorem_ipsum_long"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:onClick="@{()-> itemClickListener.itemClicked(article.url)}"
+            />
         <ImageView
             android:id="@+id/share"
             style="@style/ArticleIcon"
