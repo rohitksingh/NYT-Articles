@@ -2,7 +2,6 @@ package ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.rohitksingh.nytimesarticles.R;
@@ -26,18 +25,19 @@ import viewmodels.ArticleListViewModel;
 public class ArticleListActivity extends AppCompatActivity implements ItemClickListener,
         SearchView.OnQueryTextListener, SearchView.OnCloseListener, View.OnClickListener, ShareActionListener {
 
+    private static final String TAG = "ArticleListActivity";
+
+    public static final String ARTICLE_URL = "ArticleListActivity.ARTICLE_URL";
+
     private ArticleListAdapter articleListAdapter;
+    private ArticleSuggestionAdapter searchSuggestionAdapter;
+
     private RecyclerView.LayoutManager articleListLayoutManager;
     private RecyclerView.LayoutManager suggestionListLayoutManager;
-
-    private ArticleSuggestionAdapter searchSuggestionAdapter;
 
     private ActivityArticleListBinding binding;
     private ArticleListViewModel viewModel;
 
-    public static final String ARTICLE_URL = "ArticleListActivity.ARTICLE_URL";
-
-    private static final String TAG = "ArticleListActivity";
 
     /***********************************************************************************************
      *                              Lefecycyle methods
@@ -94,7 +94,29 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         viewModel.loadSuggestionsFromRoom();
     }
 
+    @Override
+    public void emailArticle(Article article) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/html");
+        intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+        intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
 
+        startActivity(Intent.createChooser(intent, "Send Email"));
+    }
+
+    @Override
+    public void shareArticle(Article article) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, article.getUrl());
+        startActivity(Intent.createChooser(shareIntent, "Share link using"));
+    }
+
+
+    /***********************************************************************************************
+     *                              Public methods
+     **********************************************************************************************/
     public void startArticleDetailActivity(String articleUrl){
         Intent intent = new Intent(this, ArticleDetailActivity.class);
         intent.putExtra(ARTICLE_URL, articleUrl);
@@ -139,7 +161,6 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         observeViewModel();
     }
 
-
     private void observeViewModel(){
 
         viewModel.getArticlesLiveData().observe(this, articleList  -> {
@@ -163,22 +184,4 @@ public class ArticleListActivity extends AppCompatActivity implements ItemClickL
         binding.searchView.setOnQueryTextListener(this);
     }
 
-    @Override
-    public void emailArticle(Article article) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/html");
-        intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
-        intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
-
-        startActivity(Intent.createChooser(intent, "Send Email"));
-    }
-
-    @Override
-    public void shareArticle(Article article) {
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, article.getUrl());
-        startActivity(Intent.createChooser(shareIntent, "Share link using"));
-    }
 }
