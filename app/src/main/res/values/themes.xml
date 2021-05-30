@@ -48,5 +48,10 @@
         <item name="android:background">@color/app_grey</item>
     </style>
 
+    <style name="CompanyName">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">48sp</item>
+        <item name="fontFamily">@font/cheltenham_italic</item>
+    </style>
 
 </resources>

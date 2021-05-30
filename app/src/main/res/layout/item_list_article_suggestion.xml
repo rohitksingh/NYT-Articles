@@ -19,8 +19,8 @@
         android:clickable="true">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/searchIcon"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="@dimen/circle_image_size"
+            android:layout_height="@dimen/circle_image_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +39,7 @@
             android:padding="@dimen/padding_small"
             tools:text="@string/lorem_ipsum"
             android:text="@{suggestion.heading}"
-            android:textSize="12sp"
+            android:textSize="@dimen/article_text_small"
             android:fontFamily="@font/cheltenham_italic"
             />
         <ImageView

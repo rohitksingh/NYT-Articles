@@ -17,15 +17,12 @@
             android:orientation="vertical">
             <TextView
                 android:id="@+id/companyName"
+                style="@style/CompanyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="240dp"
                 android:gravity="center"
-                android:text="@string/company_name"
-                android:textSize="48sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/cheltenham_italic"
-                />
+                android:text="@string/company_name" />
             <LinearLayout
                 android:id="@+id/searchViewHolder"
                 android:layout_width="match_parent"
