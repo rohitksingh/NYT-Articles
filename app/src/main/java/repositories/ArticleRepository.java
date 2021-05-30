@@ -38,6 +38,8 @@ public class ArticleRepository implements Callback<SearchAPIResponse>{
     @Override
     public void onResponse(Call<SearchAPIResponse> call, Response<SearchAPIResponse> response) {
 
+        Log.d(TAG, "onResponse: "+call.request().url());
+
         List<Article> articleList = response.body().getArticleResponse().getArticles();
 
         if(call== articlesGETRequest){
@@ -65,12 +67,12 @@ public class ArticleRepository implements Callback<SearchAPIResponse>{
     }
 
     public void fetchArticlesFromAPI(String searchTerm){
-        articlesGETRequest = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm, "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj");
+        articlesGETRequest = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm);
         articlesGETRequest.enqueue(this);
     }
 
     public void fetchSuggestedArticlesFromAPI(String searchTerm){
-        suggestedArticlesGETRequest = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm, "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj");
+        suggestedArticlesGETRequest = ServiceGenerator.getArticleAPI().getSearchAPIResponse(searchTerm);
         suggestedArticlesGETRequest.enqueue(this);
     }
 
