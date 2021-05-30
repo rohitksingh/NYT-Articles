@@ -10,62 +10,59 @@
             android:id="@+id/searchLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
             <TextView
                 android:id="@+id/companyName"
+                style="@style/CompanyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="240dp"
-                android:fontFamily="@font/cheltenham_italic"
                 android:gravity="center"
-                android:text="@string/company_name"
-                android:textSize="48sp"
-                android:textStyle="bold" />
+                android:text="@string/company_name" />
             <LinearLayout
                 android:id="@+id/searchViewHolder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:animateLayoutChanges="true"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="16dp">
+                android:paddingLeft="@dimen/padding_medium"
+                android:paddingRight="@dimen/padding_medium"
+                android:paddingTop="@dimen/padding_medium"
+                android:animateLayoutChanges="true">
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxWidth="1000dp"
                     android:background="@drawable/bg_cornered_grey"
                     android:fontFamily="@font/cheltenham_italic"
-                    android:maxWidth="1000dp"
                     app:queryHint="@string/search_article" />
                 <TextView
                     android:id="@+id/searchTitle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
+                    android:paddingLeft="@dimen/margin_small"
                     android:background="@drawable/bg_search_view"
-                    android:fontFamily="@font/cheltenham_italic"
                     android:gravity="center_vertical"
-                    android:onClick="@{() -> searchView.setIconified(false)}"
-                    android:paddingLeft="8dp"
+                    tools:text="@string/search_article"
                     android:text="@string/search_article"
                     android:textSize="16sp"
-                    tools:text="@string/search_article" />
+                    android:fontFamily="@font/cheltenham_italic"
+                    android:onClick="@{() -> searchView.setIconified(false)}" />
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/articleSuggestionRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="16dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp" />
+                android:paddingBottom="@dimen/padding_medium"
+                android:paddingLeft="@dimen/padding_medium"
+                android:paddingRight="@dimen/padding_medium" />
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/articleListRecyclerView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

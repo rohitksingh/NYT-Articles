@@ -20,6 +20,8 @@
     </style>
 
     <style name="ArticleTopic">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/margin_medium</item>
         <item name="android:layout_marginRight">@dimen/margin_medium</item>
         <item name="android:paddingLeft">6dp</item>
@@ -46,5 +48,10 @@
         <item name="android:background">@color/app_grey</item>
     </style>
 
+    <style name="CompanyName">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">48sp</item>
+        <item name="fontFamily">@font/cheltenham_italic</item>
+    </style>
 
 </resources>
