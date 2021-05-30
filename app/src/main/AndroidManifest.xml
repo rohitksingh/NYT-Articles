@@ -12,7 +12,8 @@
         android:theme="@style/Theme.NYTimesArticles">
         <activity
             android:name="ui.activities.ArticleListActivity"
-            android:theme="@style/Theme.NYTimesArticles.NoActionBar">
+            android:theme="@style/Theme.NYTimesArticles.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

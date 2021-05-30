@@ -29,7 +29,6 @@
             android:layout_marginLeft="@dimen/margin_medium"
             articleImageUrl="@{suggestion.thumbnail}"
             />
-
         <TextView
             android:id="@+id/sugggestionText"
             android:layout_width="0dp"

@@ -8,22 +8,23 @@
         tools:context="ui.activities.ArticleListActivity">
         <LinearLayout
             android:id="@+id/searchLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
             android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent"
-            android:animateLayoutChanges="true">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
             <TextView
                 android:id="@+id/companyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/company_name"
-                android:textSize="48dp"
-                android:textStyle="bold"
-                android:gravity="center"
                 android:layout_marginTop="240dp"
                 android:fontFamily="@font/cheltenham_italic"
-                />
+                android:gravity="center"
+                android:text="@string/company_name"
+                android:textSize="48dp"
+                android:textStyle="bold" />
             <LinearLayout
                 android:id="@+id/searchViewHolder"
                 android:layout_width="match_parent"
@@ -37,39 +38,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_cornered_grey"
-                    app:queryHint="@string/search_article"
                     android:fontFamily="@font/cheltenham_italic"
                     android:maxWidth="1000dp"
-                    />
+                    app:queryHint="@string/search_article" />
                 <TextView
                     android:id="@+id/searchTitle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:background="@drawable/bg_search_view"
+                    android:fontFamily="@font/cheltenham_italic"
+                    android:gravity="center_vertical"
+                    android:onClick="@{() -> searchView.setIconified(false)}"
                     android:paddingLeft="8dp"
                     android:text="@string/search_article"
                     android:textSize="16sp"
-                    tools:text="@string/search_article"
-                    android:fontFamily="@font/cheltenham_italic"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/bg_search_view"
-                    android:onClick="@{() -> searchView.setIconified(false)}"
-                    />
+                    tools:text="@string/search_article" />
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/articleSuggestionRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingRight="16dp"
-                android:paddingLeft="16dp"
                 android:paddingBottom="16dp"
-                />
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp" />
         </LinearLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/articleListRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
