@@ -51,9 +51,9 @@
                 android:id="@+id/articleSuggestionRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/padding_medium"
-                android:paddingLeft="@dimen/padding_medium"
-                android:paddingRight="@dimen/padding_medium" />
+                android:paddingBottom="@dimen/search_view_padding"
+                android:paddingLeft="@dimen/search_view_padding"
+                android:paddingRight="@dimen/search_view_padding" />
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/articleListRecyclerView"
