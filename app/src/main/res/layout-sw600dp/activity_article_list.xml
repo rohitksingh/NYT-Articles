@@ -26,18 +26,15 @@
                 android:id="@+id/searchViewHolder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_medium"
-                android:paddingRight="@dimen/padding_medium"
-                android:paddingTop="@dimen/padding_medium"
+                android:paddingLeft="@dimen/search_view_padding"
+                android:paddingRight="@dimen/search_view_padding"
+                android:paddingTop="@dimen/margin_medium"
                 android:animateLayoutChanges="true">
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxWidth="1000dp"
-                    android:background="@drawable/bg_cornered_grey"
-                    android:fontFamily="@font/cheltenham_italic"
-                    app:queryHint="@string/search_article" />
+                    style="@style/SearchViewStyle"
+                    app:queryHint="@string/search_article"
+                    />
                 <TextView
                     android:id="@+id/searchTitle"
                     android:layout_width="match_parent"
@@ -56,8 +53,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/padding_medium"
-                android:paddingLeft="@dimen/padding_medium"
-                android:paddingRight="@dimen/padding_medium" />
+                android:paddingLeft="@dimen/search_view_padding"
+                android:paddingRight="@dimen/search_view_padding" />
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/articleListRecyclerView"

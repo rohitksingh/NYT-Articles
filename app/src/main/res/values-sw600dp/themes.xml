@@ -55,4 +55,12 @@
         <item name="android:layout_marginTop">480dp</item>
     </style>
 
+    <style name="SearchViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxWidth">@dimen/search_view_max_width</item>
+        <item name="android:background">@drawable/bg_cornered_grey</item>
+        <item name="fontFamily">@font/cheltenham_italic</item>
+    </style>
+
 </resources>
