@@ -26,7 +26,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:civ_border_color="@color/app_grey"
             app:civ_border_width="@dimen/line_thickness"
-            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_margin="@dimen/margin_medium"
+            tools:background="@mipmap/ic_launcher"
             articleImageUrl="@{suggestion.thumbnail}" />
         <TextView
             android:id="@+id/suggestionText"
@@ -37,10 +38,14 @@
             app:layout_constraintStart_toEndOf="@+id/searchIcon"
             app:layout_constraintTop_toTopOf="parent"
             android:padding="@dimen/padding_small"
-            tools:text="@string/lorem_ipsum"
+            android:layout_marginLeft="@dimen/margin_small"
+            tools:text="@string/lorem_ipsum_long"
             android:text="@{suggestion.heading}"
             android:textSize="@dimen/article_text_small"
             android:fontFamily="@font/cheltenham_italic"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:maxLines="2"
             />
         <ImageView
             android:id="@+id/imageView"
