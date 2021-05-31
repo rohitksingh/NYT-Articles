@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="article"
+            type="models.Article"/>
+        <variable
+            name="itemClickListener"
+            type="listeners.ItemClickListener" />
+        <variable
+            name="shareActionListener"
+            type="listeners.ShareActionListener" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/thumbnail"
+            android:layout_width="0sp"
+            android:layout_height="0sp"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            android:layout_margin="@dimen/margin_medium"
+            android:clickable="true"
+            android:onClick="@{()-> itemClickListener.itemClicked(article.url)}">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:scaleType="fitXY"
+                app:articleImageUrl="@{article.thumbnail}" />
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/headline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/thumbnail"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="@dimen/margin_medium"
+            android:fontFamily="@font/cheltenham_italic"
+            tools:text="@string/lorem_ipsum_long"
+            android:text="@{article.heading}"
+            android:textSize="@dimen/article_text_medium"
+            android:clickable="true"
+            android:onClick="@{()-> itemClickListener.itemClicked(article.url)}" />
+        <ImageView
+            android:id="@+id/share"
+            style="@style/ArticleIcon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/headline"
+            app:layout_constraintTop_toBottomOf="@+id/headline"
+            android:background="@drawable/ic_share"
+            android:onClick="@{()-> shareActionListener.shareArticle(article)}"
+            />
+        <ImageView
+            android:id="@+id/email"
+            style="@style/ArticleIcon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/share"
+            app:layout_constraintTop_toBottomOf="@+id/headline"
+            android:layout_marginRight="@dimen/margin_large"
+            android:background="@drawable/ic_email"
+            android:onClick="@{() -> shareActionListener.emailArticle(article)}"
+            />
+        <TextView
+            android:id="@+id/topic"
+            style="@style/ArticleTopic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headline"
+            topicVisibility="@{article.topic}"
+            android:text="@{article.topic}"
+            tools:text="@string/lorem_ipsum" />
+        <View
+            android:id="@+id/line"
+            style="@style/Line"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/share" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
