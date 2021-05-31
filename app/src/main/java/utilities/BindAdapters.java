@@ -1,9 +1,11 @@
 package utilities;
 
+import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.rohitksingh.nytimesarticles.BuildConfig;
 import com.rohitksingh.nytimesarticles.R;
 import com.squareup.picasso.Picasso;
 
@@ -11,15 +13,11 @@ import androidx.databinding.BindingAdapter;
 
 public class BindAdapters {
 
-    private static final String TAG = "ArticleDetailActivity";
-    private static final String IMAGE_BASE_URL = "https://www.nytimes.com/";
-
-
     @BindingAdapter("articleImageUrl")
     public static void loadArticleImage(ImageView imageView, String imageUrl) {
 
         Picasso.get()
-                .load(IMAGE_BASE_URL + imageUrl)
+                .load(Globals.imgBaseUrl + imageUrl)
                 .error(R.drawable.img_article_not_found)
                 .into(imageView);
     }

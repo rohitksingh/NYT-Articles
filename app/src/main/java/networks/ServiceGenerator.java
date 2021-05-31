@@ -5,18 +5,17 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import utilities.Globals;
 
 /**
  * This class is used to create Article API instance
  */
 public class ServiceGenerator {
 
-    public static final String BASE_URL = "https://api.nytimes.com/";
-
     public static ArticleAPI getArticleAPI() {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Globals.baseUrl)
                 .client(getHTTPClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -56,7 +55,7 @@ public class ServiceGenerator {
 
         return httpUrl
                 .newBuilder()
-                .addQueryParameter("api-key", "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj")
+                .addQueryParameter("api-key", Globals.apiKey)
                 .build();
     }
 
