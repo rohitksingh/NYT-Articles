@@ -23,6 +23,7 @@
 
 2) Secuity Guideline: API-KEY is stored in local.properties file so that the API Key is not pushed in Version Control,
 
+## Screens 
 
 <p align="center">
  <img height="500" src="https://user-images.githubusercontent.com/11274840/120173222-ac12f980-c1b8-11eb-8f11-8a3f9083432e.png">
