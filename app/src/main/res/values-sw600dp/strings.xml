@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">NYTimes Articles</string>
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="company_name">NY Times</string>
+
+    <string name="search_article">Search Articles</string>
+    <string name="lorem_ipsum_long">
+        Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem
+        Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum
+        Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum
+        Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum
+        IpsumLorem Ipsum Lorem Ipsum
+    </string>
+
+    <string name="lorem_ipsum">Lorem Ipsum</string>
+    <string name="email_article">Email this article using</string>
+    <string name="share_article">Share this article using</string>
+
+</resources>

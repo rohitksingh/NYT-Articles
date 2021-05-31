@@ -2,9 +2,6 @@ package models;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * This class is used to check API Response and Status code
- */
 public class SearchAPIResponse {
 
     @SerializedName("status")

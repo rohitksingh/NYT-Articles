@@ -17,6 +17,20 @@ android {
     }
 
     buildTypes {
+
+        buildTypes.each{
+            Properties localProperties = new Properties()
+            localProperties.load(project.rootProject.file("local.properties").newDataInputStream())
+            def baseUrl = localProperties.getProperty("base_url", "")
+            def imgBaseUrl = localProperties.getProperty("img_base_url", "")
+            def apiKey = localProperties.getProperty("api_key", "")
+
+            it.buildConfigField 'String', 'BASE_URL', baseUrl
+            it.buildConfigField 'String', 'IMG_BASE_URL', imgBaseUrl
+            it.buildConfigField 'String', 'API_KEY', apiKey
+
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

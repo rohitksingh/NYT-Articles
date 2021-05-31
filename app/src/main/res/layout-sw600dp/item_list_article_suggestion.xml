@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="suggestion"
+            type="models.Article" />
+        <variable
+            name="listener"
+            type="listeners.ItemClickListener" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_search_view"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{()-> listener.itemClicked(suggestion.url)}"
+        android:clickable="true">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/searchIcon"
+            android:layout_width="@dimen/circle_image_size"
+            android:layout_height="@dimen/circle_image_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:civ_border_color="@color/app_grey"
+            app:civ_border_width="@dimen/line_thickness"
+            android:layout_margin="@dimen/margin_medium"
+            tools:background="@mipmap/ic_launcher"
+            articleImageUrl="@{suggestion.thumbnail}" />
+        <TextView
+            android:id="@+id/suggestionText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/searchIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="@dimen/padding_small"
+            android:layout_marginLeft="@dimen/margin_small"
+            tools:text="@string/lorem_ipsum_long"
+            android:text="@{suggestion.heading}"
+            android:textSize="@dimen/article_text_small"
+            android:fontFamily="@font/cheltenham_italic"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:maxLines="2"
+            />
+        <ImageView
+            android:id="@+id/imageView"
+            style="@style/ArticleIcon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{()-> listener.itemClicked(suggestion.url)}"
+            android:background="@drawable/ic_external_link"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
